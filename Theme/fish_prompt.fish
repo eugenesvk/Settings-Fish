@@ -29,14 +29,14 @@ function fish_prompt
 end
 
 function fish_right_prompt
-  if test $last_status -gt 0                                         #error code in red
+  if test $last_status -gt 0                                         #set error code in red
     set errorp (_col brred)"$last_status⏎"(_col_res)" "
   end
-  if [ (jobs -l | wc -l) -gt 0 ]                                     #⚙ show if any background jobs exit
+  set -l duration (_cmd_duration)                                    #set duration of last command
+  if [ (jobs -l | wc -l) -gt 0 ]                                     #set ⚙ if any background jobs exit
     set jobsp $ICON_JOBS
   end
-  echo -n -s "$errorp"(_cmd_duration)"$jobsp"                        #error code, command duration and jobs status
-
+  echo -n -s "$errorp$duration$jobsp"                                #show error code, command duration and jobs status
   if _is_git_folder                                                  #show  only if in a git folder
   #command git rev-parse --is-inside-work-tree 1>/dev/null 2>/dev/null
     set git_sha (_git_prompt_short_sha)                              #git short sha
@@ -45,7 +45,7 @@ function fish_right_prompt
     set RUBYp   (_ruby_version)                                      #Ruby prompt @ gemset
     echo -n -s "$git_sha$NODEp$PYTHONp$RUBYp"                        # -n no newline -s no space separation
   end
-  echo -n -s (_prompt_user)
+  echo -n -s (_prompt_user)                                          #display user@host if different from default or SSH
 end
 
 function _cmd_duration -d 'Displays the elapsed time of last command and show notification for long lasting commands'
@@ -340,7 +340,64 @@ end
 set -g CMD_DURATION 0
 
 #Additional info
+  #set -l time (date '+%I:%M'); #set -l time_info (_col blue)($time)(_col_res); #echo -n -s $time_info
+  #function print_blank_line() {
+  #    if git rev-parse --git-dir > /dev/null 2>&1
+  #     echo -e "n"
+  #    else
+  #     echo -n "b"
+  #    end
+  #end
+  # use this to enable users to see their ruby version, no matter which version management system they use
+  #function ruby_prompt_info
+  #  echo $(rvm_prompt_info || rbenv_prompt_info || chruby_prompt_info)
+  #end
+
+  #bash
+  # echo "$(rbenv gemset active 2&>/dev/null | sed -e ":a" -e '$ s/\n/+/gp;N;b a' | head -n1)"
+  # fenv echo "\$(rbenv gemset active 2\&>/dev/null | sed -e ":a" -e '\$ s/\n/+/gp;N;b a' | head -n1)"
+  # bass echo "\$(rbenv gemset active 2\&>/dev/null | sed -e ":a" -e '\$ s/\n/+/gp;N;b a' | head -n1)"
+  #Run command in background: command &
+  #0 is stdin. 1 is stdout. 2 is stderr.
+  #Redirect STDERR to STDOUT: command 2>&1
+  #One method of combining multiple commands is to use a -e before each command
+  #sed -e 's/a/A/' -e 's/b/B/' <old >new
+  #:label
+  #' to turn quoting on/off, so '$ is
+  #g get; p print; N next
+  #head -n1         #print 1 line of a file to stdout
+  #end
+
+  #current_gemset alternativ
+  #  else if test (rbenv gemset active >/dev/null ^&1) = "no active gemsets" # not sure what ^&1
+  #  else
+  #    set -l active_gemset (string split -m1 " " (rbenv gemset active))
+  #    echo $active_gemset[1]
+  #
+  #  set -l active_gemset (rbenv gemset active ^/dev/null)
+  #  if test -z "$active_gemset"
+  #  else if test $active_gemset = "no active gemsets"
+  #    else
+  #      set -l active_gemset (string split -m1 " " $active_gemset)
+  #      echo $active_gemset[1]
+  #  end
+  # echo (rbenv gemset active 2&>/dev/null | sed -e ":a" -e '$ s/\n/+/gp;N;b a' | head -n1)
+  # if [ ]
+
   #The short summary is that if $VAR is not set, then test -n $VAR is equivalent to test -n, and POSIX requires that we just  check if that one argument (the -n) is not null.
   #1. if test -n "$SSH_CLIENT" # You can fix it by quoting, which forces an argument even if it's empty:
   #2. test -n (EXPRESSION; or echo "")
   #3. use count
+
+
+
+#function __bobthefish_prompt_user -d 'Display actual user if different from $default_user'
+#  if [ "$theme_display_user" = 'yes' ]
+#    if [ "$USER" != "$default_user" -o -n "$SSH_CLIENT" ]
+#      __bobthefish_start_segment $__bobthefish_lt_grey $__bobthefish_slate_blue
+#      echo -n -s (whoami) '@' (hostname | cut -d . -f 1) ' '
+#    end
+#  end
+#end
+
+#echo "Python 3.5.0" | cut -d ' ' -f 2 2>/dev/null        #-d use DELIM instead of tabs, -f print line without delims

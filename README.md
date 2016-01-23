@@ -7,3 +7,12 @@ Includes the following (paths are for a standard installation with [__Homebrew__
 2. Custom theme for prompt display ([fish_prompt.fish](https://github.com/eugenesvk/Settings-Fish/blob/master/Theme/fish_prompt.fish) and [fish_title.fish](https://github.com/eugenesvk/Settings-Fish/blob/master/Theme/fish_title.fish)). Copy to `~/.local/share/omf/themes/Theme-Name` and install with `omf theme Theme-Name` (__Oh-My-Fish__ required)
 
 3. A few custom [functions](https://github.com/eugenesvk/Settings-Fish/tree/master/Functions). Copy to `~/.config/fish/functions`
+
+##__Git folder__
+
+![Git folder](https://github.com/eugenesvk/Settings-Fish/blob/master/Assets/Fish%20Prompt%20Git-es.png)
+
+
+##__Normal folder (no Git)__
+
+![Non-git folder](https://github.com/eugenesvk/Settings-Fish/blob/master/Assets/Fish%20Prompt%20NoGit-es.png)
