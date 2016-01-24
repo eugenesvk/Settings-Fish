@@ -2,7 +2,9 @@
 
 #Custom functions (autoloaded from '~/.config/fish/functions/'), also 'aliases' are treated as a function
   #f.fish                                               #Search for case insensitive file in or below current directory
-  #mkdir.fish                                           #Create a directory and set CWD
+  #gpl.fish                                             #Prints a pretty git log
+  #l.fish                                               #A shortcut to ls -al –color=always
+  #mkd.fish                                             #Create a directory CD to it
   #r.fish                                               #Search for text in all files in or below current folder
   #update.fish                                          #Update everything (Homebrew + packages, Oh-My-Fish)
   #z.fish                                               #Add frequently used folder list
