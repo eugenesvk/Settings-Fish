@@ -21,6 +21,11 @@ source $OMF_PATH/init.fish                              # Load oh-my-fish config
 #top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
 #other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)
 
+#set empty greeting and echo reminders on a few useful functions
+set -g fish_greeting
+echo '`update` (homebrew and OMF), `fish_config`, `omf theme`'
+echo '`z foo` cd to most recent dir matching `foo`; `z foo bar` matches both; `z -r foo` highest ranked; `z -t foo` most recent; `z -l foo` lists all dirs matching `foo` (by frequency)'
+
 #Some extra info
 # Use function as aliase
   #function ls
