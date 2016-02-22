@@ -14,17 +14,17 @@
   #nvm.fish                                             # wrapper for Node Version Manager in fish
   #rbenv                                                # wrapper for rbenv
 
-source ~/.config/env.fish                               # Add environment variables
-set -gx OMF_PATH "/Users/eugenesv/.local/share/omf"     # Path to Oh My Fish install, `-g` global, `-x` export=make it env
-set -gx OMF_CONFIG "/Users/eugenesv/.config/fish/omf"   # Customize Oh My Fish configuration path
+set -gx OMF_PATH    "/Users/eugenesv/.local/share/omf"  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
+set -gx OMF_CONFIG  "/Users/eugenesv/.config/fish/omf"  # Customize Oh My Fish configuration path
+source $HOME/.config/env.fish                           # Add environment variables
 source $OMF_PATH/init.fish                              # Load oh-my-fish configuration
+source $HOME/.config/venv.fish                          # Initialize virtual environments
+
+#Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
 #top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
 #other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)
-
-#set empty greeting and echo reminders on a few useful functions
-set -g fish_greeting
-echo '`update` (homebrew and OMF), `fish_config`, `omf theme`'
-echo '`z foo` cd to most recent dir matching `foo`; `z foo bar` matches both; `z -r foo` highest ranked; `z -t foo` most recent; `z -l foo` lists all dirs matching `foo` (by frequency)'
 
 #Some extra info
 # Use function as aliase
@@ -51,3 +51,4 @@ echo '`z foo` cd to most recent dir matching `foo`; `z foo bar` matches both; `z
   #1. if test -n "$SSH_CLIENT" # You can fix it by quoting, which forces an argument even if it's empty:
   #2. test -n (EXPRESSION; or echo "")
   #3. use count
+
