@@ -11,7 +11,7 @@
 
 #Oh-My-Fish packages (installed through 'omf install X')
   #foreign-env or bass                                  # wrapper for bash scripts
-  #nvm.fish                                             # wrapper for Node Version Manager in fish
+  #nvm.fish                                             # (removed due to use of nodenv) wrapper for NVM in fish
   #rbenv                                                # wrapper for rbenv
 
 set -gx OMF_PATH    "/Users/eugenesv/.local/share/omf"  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
@@ -22,6 +22,14 @@ source $HOME/.config/venv.fish                          # Initialize virtual env
 
 #Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# Theme-es config
+set -g theme_es_show_symbols      'yes'    # [yes]
+set -g theme_es_verbose_git_ahead 'yes'    # [yes]
+set -g theme_es_show_git_sha      'short'  # [short], long
+set -g theme_es_show_user         'no'     # [no], yes
+set -g theme_es_show_hostname     'yes'    # [yes]
+set -g theme_es_notify_duration   10000
 
 #top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
 #other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)

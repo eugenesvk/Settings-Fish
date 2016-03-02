@@ -42,5 +42,5 @@ set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForge\ Too
 #/opt/X11/bin /usr/local/MacGPG2/bin          #manually added in '/private/etc/paths.d'
 
 # Other environment vars
-set -gx	HOMEBREW_GITHUB_API_TOKEN
-set -gx	ST3_MARKDOWN_GITHUB_API_TOKEN
+set -gx HOMEBREW_GITHUB_API_TOKEN=`cat /Users/eugenesv/.config/env_github_brew.txt`
+set -gx ST3_MARKDOWN_GITHUB_API_TOKEN=`cat /Users/eugenesv/.config/env_github_ST3.txt`
