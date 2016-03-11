@@ -1,6 +1,6 @@
 fish_history
-fishd.2*
+fishd.*
 functions/fish_prompt.fish
 functions/fzf_key_bindings.fish
 functions/node_modules/
-theme
+omf/theme
