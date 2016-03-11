@@ -1,3 +1,6 @@
-function r -d "Search for text in all files in or below current folder"
-  grep -R $argv .                #recursive and following symbolic links
+function R
+    echo '(R)'
+end
+function r
+    echo '(r)'
 end

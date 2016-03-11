@@ -1,5 +1,10 @@
 # Fish Shell config files (fishshell.com) with Oh-My-Fish (https://github.com/oh-my-fish/)
 
+if status -l; source $HOME/.config/fish/profileMSys2.fish; end   # copy of /etc/profile -> fish
+#source $HOME/.config/fish/profile.fish
+
+#Need to run with XDG_RUNTIME_DIR=/tmp/fish.Evgeny/ fish
+
 #Custom functions (autoloaded from '~/.config/fish/functions/'), also 'aliases' are treated as a function
   #f.fish                                               #Search for case insensitive file in or below current directory
   #gpl.fish                                             #Prints a pretty git log
@@ -11,17 +16,12 @@
 
 #Oh-My-Fish packages (installed through 'omf install X')
   #foreign-env or bass                                  # wrapper for bash scripts
-  #nvm.fish                                             # (removed due to use of nodenv) wrapper for NVM in fish
-  #rbenv                                                # wrapper for rbenv
 
-set -gx OMF_PATH    "/Users/eugenesv/.local/share/omf"  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
-set -gx OMF_CONFIG  "/Users/eugenesv/.config/fish/omf"  # Customize Oh My Fish configuration path
+set -gx OMF_PATH    "$HOME/.local/share/omf"  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
+set -gx OMF_CONFIG  "$HOME/.config/fish/omf"  # Customize Oh My Fish configuration path
 source $HOME/.config/env.fish                           # Add environment variables
 source $OMF_PATH/init.fish                              # Load oh-my-fish configuration
-source $HOME/.config/venv.fish                          # Initialize virtual environments
-
-#Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+# source $HOME/.config/venv.fish                          # Initialize virtual environments
 
 # Theme-es config
 set -g theme_es_show_symbols      'yes'    # [yes]
