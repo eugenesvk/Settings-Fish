@@ -3,6 +3,7 @@
 if which pyenv > /dev/null; status --is-interactive; and . (pyenv init -|psub); end
 if which pyenv-virtualenv-init > /dev/null; status --is-interactive; and . (pyenv virtualenv-init -|psub); end
 if which rbenv > /dev/null; status --is-interactive; and . (rbenv init -|psub); end
+if which nodenv > /dev/null; status --is-interactive; and . (nodenv init -|psub); end
 if which plenv > /dev/null; status --is-interactive; and . (plenv init -|psub); end
 #if which jenv > /dev/null; status --is-interactive; and . (jenv init -|psub); end	#not working
 if which jenv > /dev/null; fenv 'eval "$(jenv init -)"'; end

@@ -1,5 +1,25 @@
 # Fish Shell config files (fishshell.com) with Oh-My-Fish (https://github.com/oh-my-fish/)
 
+set -gx OMF_PATH    $HOME/.local/share/omf	# Path to Oh My Fish install, `-g` global, `-x` export=make it env
+set -gx OMF_CONFIG  $HOME/.config/fish/omf	# Customize Oh My Fish configuration path
+source $HOME/.config/fish/env.fish        	# Add environment variables
+source $OMF_PATH/init.fish                	# Load oh-my-fish configuration
+source $HOME/.config/fish/envvirt.fish    	# Initialize virtual environments
+
+#Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# Theme-es config
+set -g theme_es_show_symbols      'yes'    # [yes]
+set -g theme_es_verbose_git_ahead 'yes'    # [yes]
+set -g theme_es_show_git_sha      'short'  # [short], long
+set -g theme_es_show_user         'no'     # [no], yes
+set -g theme_es_show_hostname     'yes'    # [yes]
+set -g theme_es_notify_duration   10000
+#top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
+#other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)
+
+# Extra info
 #Custom functions (autoloaded from '~/.config/fish/functions/'), also 'aliases' are treated as a function
   #f.fish                                               #Search for case insensitive file in or below current directory
   #gpl.fish                                             #Prints a pretty git log
@@ -14,27 +34,6 @@
   #nvm.fish                                             # (removed due to use of nodenv) wrapper for NVM in fish
   #rbenv                                                # wrapper for rbenv
 
-set -gx OMF_PATH    "/Users/eugenesv/.local/share/omf"  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
-set -gx OMF_CONFIG  "/Users/eugenesv/.config/fish/omf"  # Customize Oh My Fish configuration path
-source $HOME/.config/env.fish                           # Add environment variables
-source $OMF_PATH/init.fish                              # Load oh-my-fish configuration
-source $HOME/.config/venv.fish                          # Initialize virtual environments
-
-#Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-
-# Theme-es config
-set -g theme_es_show_symbols      'yes'    # [yes]
-set -g theme_es_verbose_git_ahead 'yes'    # [yes]
-set -g theme_es_show_git_sha      'short'  # [short], long
-set -g theme_es_show_user         'no'     # [no], yes
-set -g theme_es_show_hostname     'yes'    # [yes]
-set -g theme_es_notify_duration   10000
-
-#top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
-#other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)
-
-#Some extra info
 # Use function as aliase
   #function ls
   #    command ls --color=auto $argv

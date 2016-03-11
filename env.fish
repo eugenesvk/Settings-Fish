@@ -28,9 +28,11 @@ set -x 	EDITOR        	"subl -w"
 set -x 	DevH          	$HOME/.dev  	#local development environment for virutalenvs etc.
 set -x 	PYENV_ROOT    	$DevH/.pyenv	#local Python versions/shims; default ~/.pyenv
 #set -x	PYREPO_ROOT   	$PYENV_ROOT/versions/3.5.1/lib/python3.5/site-packages
-set -x 	RBENV_ROOT    	$DevH/.rbenv	#local Ruby versions/shims; default ~/.rbenv
-set -x 	PLENV_ROOT    	$DevH/.plenv	#local Per versions/shims; default ~/.plenv
+set -x 	RBENV_ROOT    	$DevH/.rbenv 	#local Ruby versions/shims; default ~/.rbenv
+set -x 	NODENV_ROOT   	$DevH/.nodenv	#local Nodenv versions/shims; default ~/.nodenv
+#set -x	NPM_ROOT      	$DevH/.nodenv/versions/5.6.0/lib/node_modules/npm
 set -gx	NVM_DIR       	$DevH/.nvm  	#local NVM versions/shims; default ~/.nvm
+set -x 	PLENV_ROOT    	$DevH/.plenv	#local Per versions/shims; default ~/.plenv
 set -x 	CoreUtils_Root	/usr/local/opt/coreutils/libexec
 set -x 	MANPATH       	$CoreUtils_Root/gnuman /usr/local/share/man $MANPATH
 set -x 	SSH_KEY_PATH  	$HOME/.ssh/rsa_id
@@ -42,5 +44,5 @@ set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForge\ Too
 #/opt/X11/bin /usr/local/MacGPG2/bin          #manually added in '/private/etc/paths.d'
 
 # Other environment vars
-set -gx HOMEBREW_GITHUB_API_TOKEN=`cat /Users/eugenesv/.config/env_github_brew.txt`
-set -gx ST3_MARKDOWN_GITHUB_API_TOKEN=`cat /Users/eugenesv/.config/env_github_ST3.txt`
+set -x HOMEBREW_GITHUB_API_TOKEN    	(cat $HOME/.config/env_github_brew.txt)
+set -x ST3_MARKDOWN_GITHUB_API_TOKEN	(cat $HOME/.config/env_github_ST3.txt)
