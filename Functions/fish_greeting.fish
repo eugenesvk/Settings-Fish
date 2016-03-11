@@ -5,7 +5,8 @@ function fish_greeting -d 'Prints a greeting on each login'
 		echo '`z foo` cd to most recent dir matching `foo`; `z foo bar` matches both; `z -r foo` highest ranked; `z -t foo` most recent; `z -l foo` lists all dirs matching `foo` (by frequency)'
 		echo '`pyenv migrate V1 V2`'
 	else if test "$system" = Win
-		echo 'Win Msys2'
+		echo '`update` (OMF), `fish_config`, `omf theme`'
+		echo '`z foo` cd to most recent dir matching `foo`; `z foo bar` matches both; `z -r foo` highest ranked; `z -t foo` most recent; `z -l foo` lists all dirs matching `foo` (by frequency)'
   else if test "$system" = Linux
 		echo ''
   else if test "$system" = NA

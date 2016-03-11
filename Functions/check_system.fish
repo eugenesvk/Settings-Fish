@@ -1,4 +1,5 @@
 function check_system -d 'Display short system name (OSX, Linux, Win, NA)'
+  set -l PATH $PATH /usr/bin
   set -l osname (uname)
   if test "$osname" = Darwin
     echo OSX

@@ -1,17 +1,7 @@
 # System-wide profile file
 
-# Some resources...
-# Customizing Your Shell  http //www.dsl.org/cookbook/cookbook_5.html#SEC69
-# Consistent BackSpace and Delete Configuration
-#   http //www.ibb.net/~anne/keyboard.html
-# The Linux Documentation Project  http //www.tldp.org/
-# The Linux Cookbook  http //www.tldp.org/LDP/linuxcookbook/html/
-# Greg's Wiki http //mywiki.wooledge.org/
-
-# Setup some default paths. Note that this order will allow user installed software to override 'system' software. Modifying these default path settings can be done in different ways
-
-set -gx XDG_RUNTIME_DIR "/tmp/fish.$USER/"  # required for older versions, otherwise fish can't create files in its own temp
-echo "=============================Fish profile is executed============================="
+#set -gx XDG_RUNTIME_DIR "/tmp/fish.$USER/"  # required for older versions, otherwise fish can't create files in its own temp. Set BEFORE fish starts (e.g. in bat). Here used as a reminder
+#echo "=============================Fish profile is executed============================="
 set -gx MSYS2_PATH  /usr/local/bin /usr/bin /bin
 set -gx MANPATH     /usr/local/man /usr/share/man /usr/man /share/man {$MANPATH}
 set -gx INFOPATH    /usr/local/info /usr/share/info /usr/info /share/info {$INFOPATH}

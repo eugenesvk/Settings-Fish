@@ -16,12 +16,16 @@ alias fishcfg "subl $HOME/.config/fish/config.fish"
 alias envcfg  "subl $HOME/.config/env.fish"	# Environment vars loaded in fish
 
 # Color stderr output in red
-set err_bold (tput bold; tput md)
-set err_red (tput setaf 1)
-set -x STDERRED_ESC_CODE (echo -e "$err_bold$err_red")
-  #set -x STDERRED_BLACKLIST "^(bash|test.*)$"            #blacklist bash, and all programs with names starting with "test"
-set -x DYLD_INSERT_LIBRARIES    /usr/local/lib/stderred/libstderred.dylib       #color errors in red; originally had
-  #additional command ${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES} in the end, but seems like a duplicate
+set -l system (check_system)
+if test "$system" = OSX
+	set err_bold (tput bold; tput md)
+	set err_red (tput setaf 1)
+	set -x STDERRED_ESC_CODE (echo -e "$err_bold$err_red")
+		#set -x STDERRED_BLACKLIST "^(bash|test.*)$"            #blacklist bash, and all programs with names starting with "test"
+	set -x DYLD_INSERT_LIBRARIES    /usr/local/lib/stderred/libstderred.dylib       #color errors in red; originally had
+		#additional command ${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES} in the end, but seems like a duplicate
+end
+
 
 # PATH
 set -x 	EDITOR        	"subl -w"
@@ -46,3 +50,13 @@ set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForge\ Too
 # Other environment vars
 set -x HOMEBREW_GITHUB_API_TOKEN    	(cat $HOME/.config/env_github_brew.txt)
 set -x ST3_MARKDOWN_GITHUB_API_TOKEN	(cat $HOME/.config/env_github_ST3.txt)
+
+# Search for compatible SSH agents and set `SSH_AUTH_SOCK` accordingly
+# ssh-find-agent
+# eval (ssh-agent) 1>/dev/null     # launch ssh-agent unless already exists
+# . $HOME/.ssh/ssh-find-agent.fish
+# ssh-find-agent -a
+# if [ -z "$SSH_AUTH_SOCK" ]
+#    eval $(ssh_agent) 2>/dev/null
+#    ssh-add -l 1>/dev/null; or alias ssh='ssh-add -l 1>/dev/null; or ssh-add; and unalias ssh; ssh'
+# end
