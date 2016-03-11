@@ -1,7 +1,7 @@
 # Fish Shell config files (fishshell.com) with Oh-My-Fish (https://github.com/oh-my-fish/)
 
 set -l system (check_system)
-if text $system = Win
+if test "$system" = Win
   if status -l; source $HOME/.config/fish/profileMSys2.fish; end   # copy of /etc/profile -> fish
 end
 
@@ -13,7 +13,6 @@ source $HOME/.config/fish/envvirt.fish    	# Initialize virtual environments
 
 #Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
 test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
-
 
 # Theme-es config
 set -g theme_es_show_symbols      'yes'    # [yes]
