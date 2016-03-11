@@ -3,3 +3,4 @@ fishd.2*
 functions/fish_prompt.fish
 functions/fzf_key_bindings.fish
 functions/node_modules/
+theme
