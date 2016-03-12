@@ -40,7 +40,7 @@ set -x 	PLENV_ROOT    	$DevH/.plenv	#local Per versions/shims; default ~/.plenv
 set -x 	CoreUtils_Root	/usr/local/opt/coreutils/libexec
 set -x 	MANPATH       	$CoreUtils_Root/gnuman /usr/local/share/man $MANPATH
 set -x 	SSH_KEY_PATH  	$HOME/.ssh/rsa_id
-set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForge\ Tools /usr/local/sbin $PATH
+set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForge /usr/local/sbin $PATH
 
 #set -x PATH $PYENV_ROOT/bin $HOME/.rbenv/bin $HOME/.plenv/bin $PATH  # not needed since binaries are in Homebrew
 #$PYENV_ROOT/shims $HOME/.rbenv/shims $HOME/.plenv/shims $PATH      #get installed through init commands above

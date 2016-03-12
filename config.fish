@@ -9,7 +9,7 @@ set -gx OMF_PATH    $HOME/.local/share/omf	# Path to Oh My Fish install, `-g` gl
 set -gx OMF_CONFIG  $HOME/.config/fish/omf	# Customize Oh My Fish configuration path
 source $HOME/.config/fish/env.fish        	# Add environment variables
 source $OMF_PATH/init.fish                	# Load oh-my-fish configuration
-source $HOME/.config/fish/envvirt.fish    	# Initialize virtual environments
+source $HOME/.config/fish/envirt.fish     	# Initialize virtual environments
 
 #Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
 test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
