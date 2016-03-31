@@ -5,3 +5,5 @@ functions/fish_prompt.fish
 functions/__fish_prompt.fish
 functions/fzf_key_bindings.fish
 omf/theme
+*.lnk
+fish_read_history
