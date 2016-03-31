@@ -9,7 +9,7 @@ set -gx OMF_PATH    $HOME/.local/share/omf	# Path to Oh My Fish install, `-g` gl
 set -gx OMF_CONFIG  $HOME/.config/fish/omf	# Customize Oh My Fish configuration path
 source $HOME/.config/fish/env.fish        	# Add environment variables
 source $OMF_PATH/init.fish                	# Load oh-my-fish configuration
-source $HOME/.config/fish/envvirt.fish    	# Initialize virtual environments
+source $HOME/.config/fish/envirt.fish     	# Initialize virtual environments
 
 #Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
 test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
@@ -35,7 +35,7 @@ set -g theme_es_notify_duration   10000
   #z.fish                                               #Add frequently used folder list
 
 #Oh-My-Fish packages (installed through 'omf install X')
-  #foreign-env or bass                                  # wrapper for bash scripts
+  #foreign-env(fenv to use) or bass                     # wrapper for bash scripts
   #nvm.fish                                             # (removed due to use of nodenv) wrapper for NVM in fish
   #rbenv                                                # wrapper for rbenv
 
@@ -53,8 +53,8 @@ set -g theme_es_notify_duration   10000
   #Style      Example                                     Description
   #Unquoted   set world earth;                            Supports all types of parameter expantion,
   #           echo hello $world prints "hello earth"      including C-style backslash expantion, etc.
-  #single     set world earth;                            No parameter expantion is performed and the only
-  #           echo 'hello $world' prints "hello $world"   special character that is recognized is the ' (single quote).
+  #single     set world earth;                            No parameter expansion is performed, the only
+  #           echo 'hello $world' prints "hello $world"   special character is the ' (single quote).
   #Double     set world earth;                            Only variable expantion is performed.
   #           echo "hello $world" prints "hello earth"    Expanded variable arrays only result in a single argument.
   #cheatography.com/myounkin/cheat-sheets/fish-shell/
