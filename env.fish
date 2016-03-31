@@ -40,7 +40,7 @@ set -x 	PLENV_ROOT    	$DevH/.plenv	#local Per versions/shims; default ~/.plenv
 set -x 	CoreUtils_Root	/usr/local/opt/coreutils/libexec
 set -x 	MANPATH       	$CoreUtils_Root/gnuman /usr/local/share/man $MANPATH
 set -x 	SSH_KEY_PATH  	$HOME/.ssh/IDs/rsa_id
-set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForgeTools /usr/local/sbin $PATH
+set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForge /usr/local/sbin $PATH
 
 #/usr/local/bin /usr/bin /bin /usr/sbin /sbin #default in '/private/etc/paths'
 #/opt/X11/bin /usr/local/MacGPG2/bin          #manually added in '/private/etc/paths.d'
