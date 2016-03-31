@@ -20,7 +20,7 @@ if [ -n "$MSYSTEM" ]
     set -gx ACLOCAL_PATH      {$MINGW_MOUNT_POINT}/share/aclocal /usr/share/aclocal
     set -gx MANPATH           {$MINGW_MOUNT_POINT}/share/man {$MANPATH}
   else if test "$MSYSTEM" = "MSYS"
-    set -gx PATH            {$MSYS2_PATH} /opt/bin {$PATH}
+    set -gx PATH            {$MSYS2_PATH} /opt/bin {$PATH} /mingw64/bin /mingw32/bin
     set -gx PKG_CONFIG_PATH /usr/lib/pkgconfig /usr/share/pkgconfig /lib/pkgconfig
   else
     set -gx PATH  {$MSYS2_PATH} {$PATH}
