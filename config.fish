@@ -35,7 +35,7 @@ set -g theme_es_notify_duration   10000
   #z.fish                                               #Add frequently used folder list
 
 #Oh-My-Fish packages (installed through 'omf install X')
-  #foreign-env or bass                                  # wrapper for bash scripts
+  #foreign-env(fenv to use) or bass                     # wrapper for bash scripts
   #nvm.fish                                             # (removed due to use of nodenv) wrapper for NVM in fish
   #rbenv                                                # wrapper for rbenv
 
@@ -51,11 +51,11 @@ set -g theme_es_notify_duration   10000
 
 #STYLE EXAMPLE DESCRIPTION
   #Style      Example                                     Description
-  #Unquoted   set world earth;                            Supports all types of parameter expantion,
-  #           echo hello $world prints "hello earth"      including C-style backslash expantion, etc.
-  #single     set world earth;                            No parameter expantion is performed and the only
-  #           echo 'hello $world' prints "hello $world"   special character that is recognized is the ' (single quote).
-  #Double     set world earth;                            Only variable expantion is performed.
+  #Unquoted   set world earth;                            Supports all types of parameter expansion,
+  #           echo hello $world prints "hello earth"      including C-style backslash expansion, etc.
+  #single     set world earth;                            No parameter expansion is performed, the only
+  #           echo 'hello $world' prints "hello $world"   special character is the ' (single quote).
+  #Double     set world earth;                            Only variable expansion is performed.
   #           echo "hello $world" prints "hello earth"    Expanded variable arrays only result in a single argument.
   #cheatography.com/myounkin/cheat-sheets/fish-shell/
 
@@ -63,4 +63,3 @@ set -g theme_es_notify_duration   10000
   #1. if test -n "$SSH_CLIENT" # You can fix it by quoting, which forces an argument even if it's empty:
   #2. test -n (EXPRESSION; or echo "")
   #3. use count
-
