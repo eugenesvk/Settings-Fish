@@ -1,6 +1,5 @@
 function check_system -d 'Display short system name (OSX, Linux, Win, NA)'
-  set -l PATH $PATH /usr/bin
-  set -l osname (uname)
+  set -l osname (uname 2>/dev/null); or set -l osname (/usr/bin/uname 2>/dev/null)      # fix for lacking MSYS2 path
   if test "$osname" = Darwin
     echo OSX
   else if begin

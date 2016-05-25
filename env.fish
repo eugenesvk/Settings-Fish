@@ -50,6 +50,7 @@ set -x 	PATH          	$CoreUtils_Root/gnubin $HOME/bin $HOME/bin/FontForge /usr
 # Other environment vars
 set -x HOMEBREW_GITHUB_API_TOKEN    	(cat $HOME/.config/env_github_brew.txt)
 set -x ST3_MARKDOWN_GITHUB_API_TOKEN	(cat $HOME/.config/env_github_ST3.txt)
+set -x HOMEBREW_NO_ANALYTICS        	1
 
 # Search for compatible SSH agents and set `SSH_AUTH_SOCK` accordingly
 # ssh-find-agent
