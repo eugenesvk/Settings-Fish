@@ -2,7 +2,8 @@
 
 set -l system (check_system)
 if test "$system" = Win
-  if status -l; source $HOME/.config/fish/profileMSys2.fish; end   # copy of /etc/profile -> fish
+  if status -l; source $HOME/.config/fish/profileMSys2.fish; end	# copy of /etc/profile -> fish
+  source $HOME/.config/fish/envssh-win.fish                     	# enable ssh-agent
 end
 
 set -gx OMF_PATH    $HOME/.local/share/omf	# Path to Oh My Fish install, `-g` global, `-x` export=make it env
