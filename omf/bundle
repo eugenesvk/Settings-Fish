@@ -2,9 +2,9 @@ package foreign-env
 package https://github.com/edc/bass
 package nvm
 package rbenv
-theme Budspencer
 theme agnoster
 theme bobthefish
+theme Budspencer
 theme clearance
 theme cmorrell
 theme default
