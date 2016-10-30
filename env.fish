@@ -4,14 +4,17 @@ set -x LANG     	en_US.UTF-8
 set -x ARCHFLAGS	"-arch x86_64"	# Compilation flags
 
 # In `fish` aliases are left for compatibility, defined as functions; `functions` for a full list
-alias py      "python"
-alias cls     "clear"                        	# Clear screen
-alias del     "rmtrash"                      	# Remove to trash
-alias bashcfg "subl $HOME/.bashrc"           	#
-alias zshcfg  "subl $HOME/.zshrc"            	#
-alias ohmyzsh "subl $HOME/.config/.oh-my-zsh"	# Better to define in ZSH_CUSTOM; `alias` for a full list
-alias fishcfg "subl $HOME/.config/fish/config.fish"
-alias envcfg  "subl $HOME/.config/fish/env.fish"	# Environment vars loaded in fish
+alias py     	"python"
+alias py3    	"python3"
+alias cls    	"clear"                              	# Clear screen
+alias del    	"rmtrash"                            	# Remove to trash
+alias bashcfg	"subl $HOME/.bashrc"                 	#
+alias zshcfg 	"subl $HOME/.zshrc"                  	#
+alias ohmyzsh	"subl $HOME/.config/.oh-my-zsh"      	# Better to define in ZSH_CUSTOM; `alias` for a full list
+alias fishcfg	"subl $HOME/.config/fish/config.fish"	#
+alias envcfg 	"subl $HOME/.config/fish/env.fish"   	# Environment vars loaded in fish
+alias m      	"fasd -f -e mpv"                     	# open frecent files with mpv
+alias sub    	"fasd -f -e subl"                    	# open frecent files with sublime
 
 #set -l system (check_system)
 if test "$system" = OSX
@@ -61,6 +64,7 @@ set -x 	NODENV_ROOT 	$DevH/.nodenv	#local Nodenv versions/shims; default ~/.node
 #set -x	NPM_ROOT    	$DevH/.nodenv/versions/5.6.0/lib/node_modules/npm
 set -gx	NVM_DIR     	$DevH/.nvm  	#local NVM versions/shims; default ~/.nvm
 set -x 	PLENV_ROOT  	$DevH/.plenv	#local Per versions/shims; default ~/.plenv
+set -x 	_FASD_DATA  	$HOME/.config/.fasd
 set -x 	MANPATH     	/usr/local/share/man $MANPATH
 set -x 	SSH_KEY_PATH	$HOME/.ssh/IDs/rsa_id
 set -x 	PATH        	$HOME/.local/bin /usr/local/sbin $PATH

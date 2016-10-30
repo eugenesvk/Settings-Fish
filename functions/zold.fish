@@ -14,13 +14,13 @@
 #   * z -l foo  # list matches instead of cd
 #   * z -c foo  # restrict matches to subdirs of $PWD
 
-complete -x -c z -a '(z --complete (commandline -t))'
+complete -x -c zold -a '(z --complete (commandline -t))'
 
 function addzhist --on-variable PWD
-  z --add "$PWD"
+  zold --add "$PWD"
 end
 
-function z -d "Jump to a recent directory."
+function zold -d "Jump to a recent directory."
     if not set -q z_datafile
         set -g z_datafile "$HOME/.z"
     end
