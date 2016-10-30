@@ -4,7 +4,6 @@ set -x LANG     	en_US.UTF-8
 set -x ARCHFLAGS	"-arch x86_64"	# Compilation flags
 
 # In `fish` aliases are left for compatibility, defined as functions; `functions` for a full list
-alias pkg-size "pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
 alias py      "python"
 alias cls     "clear"                        	# Clear screen
 alias del     "rmtrash"                      	# Remove to trash
@@ -12,13 +11,13 @@ alias bashcfg "subl $HOME/.bashrc"           	#
 alias zshcfg  "subl $HOME/.zshrc"            	#
 alias ohmyzsh "subl $HOME/.config/.oh-my-zsh"	# Better to define in ZSH_CUSTOM; `alias` for a full list
 alias fishcfg "subl $HOME/.config/fish/config.fish"
-alias envcfg  "subl $HOME/.config/env.fish"	# Environment vars loaded in fish
+alias envcfg  "subl $HOME/.config/fish/env.fish"	# Environment vars loaded in fish
 
-# Color stderr output in red
-set -l system (check_system)
+#set -l system (check_system)
 if test "$system" = OSX
 	set -x USER_NAME   	eugenesv
 	set -x DEFAULT_USER	eugenesv
+	# Color stderr output in red
 	set err_bold (tput bold; tput md)
 	set err_red (tput setaf 1)
 	set -x STDERRED_ESC_CODE (echo -e "$err_bold$err_red")
@@ -26,15 +25,29 @@ if test "$system" = OSX
 	#set -x DYLD_INSERT_LIBRARIES /usr/local/lib/stderred/libstderred.dylib       #color errors in red
 	set -x	CoreUtils_Root	/usr/local/opt/coreutils/libexec
 	set -x	MANPATH       	$CoreUtils_Root/gnuman $MANPATH
-	set -x	PATH          	$CoreUtils_Root/gnubin $HOME/.local/bin/FontForge $PATH
+	set -x	PATH          	$CoreUtils_Root/gnubin $PATH
+
+	#set -gx	PKG_CONFIG_PATH	"$PYENV_ROOT/versions/3.6-dev/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/lib"
+	#/usr/local/bin /usr/bin /bin /usr/sbin /sbin #default in '/private/etc/paths'
+	#/opt/X11/bin /usr/local/MacGPG2/bin          #manually added in '/private/etc/paths.d'
 end
-if test "$system" = Linux
+if test "$system" = Linux -o "$system" = WinLinux
 	set -x	USER_NAME                 	es
 	set -x	DEFAULT_USER              	es
 	set -x	MANPATH                   	$HOME/.linuxbrew/share/man $MANPATH
 	set -x	INFOPATH                  	$HOME/.linuxbrew/share/info $INFOPATH
 	set -x	PATH                      	$HOME/.linuxbrew/bin $HOME/.linuxbrew/sbin $PATH
 	set -x	HOMEBREW_BUILD_FROM_SOURCE	1
+end
+if test "$system" = WinLinux
+	set -x	DISPLAY	:0.0
+end
+if test "$system" = Win
+	set -x USER_NAME   	Evgeny
+	set -x DEFAULT_USER	Evgeny
+	alias pkg-size "pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
+	set -x	MANPATH	$CoreUtils_Root/gnuman $MANPATH
+	set -x	PATH   	$CoreUtils_Root/gnubin $PATH
 end
 
 # PATH
@@ -52,11 +65,7 @@ set -x 	MANPATH     	/usr/local/share/man $MANPATH
 set -x 	SSH_KEY_PATH	$HOME/.ssh/IDs/rsa_id
 set -x 	PATH        	$HOME/.local/bin /usr/local/sbin $PATH
 
-#set -gx	PKG_CONFIG_PATH	"$PYENV_ROOT/versions/3.6-dev/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/lib"
-#/usr/local/bin /usr/bin /bin /usr/sbin /sbin #default in '/private/etc/paths'
-#/opt/X11/bin /usr/local/MacGPG2/bin          #manually added in '/private/etc/paths.d'
-
 # Other environment vars
-set -x HOMEBREW_GITHUB_API_TOKEN    	(cat $HOME/.config/env_github_brew.txt)
-set -x ST3_MARKDOWN_GITHUB_API_TOKEN	(cat $HOME/.config/env_github_ST3.txt)
+set -x HOMEBREW_GITHUB_API_TOKEN    	(cat $HOME/.config/bash/env_github_brew.txt)
+set -x ST3_MARKDOWN_GITHUB_API_TOKEN	(cat $HOME/.config/bash/env_github_ST3.txt)
 set -x HOMEBREW_NO_ANALYTICS        	1

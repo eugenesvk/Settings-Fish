@@ -1,16 +1,16 @@
 # Fish Shell config files (fishshell.com) with Oh-My-Fish (https://github.com/oh-my-fish/)
 
-set -l system (check_system)
+set -lx system (check_system)
 if test "$system" = Win
-  if status -l; source $HOME/.config/fish/profileMSys2.fish; end	# copy of /etc/profile -> fish
-  source $HOME/.config/fish/envssh-win.fish                     	# enable ssh-agent
+  if status -l; source $HOME/.config/fish/profileMSys2.fish; end  # copy of /etc/profile -> fish
+  source $HOME/.config/fish/envssh-win.fish                       # enable ssh-agent
 end
 
-set -gx OMF_PATH    $HOME/.local/share/omf	# Path to Oh My Fish install, `-g` global, `-x` export=make it env
-set -gx OMF_CONFIG  $HOME/.config/fish/omf	# Customize Oh My Fish configuration path
-source $HOME/.config/fish/env.fish        	# Add environment variables
-source $OMF_PATH/init.fish                	# Load oh-my-fish configuration
-source $HOME/.config/fish/envirt.fish     	# Initialize virtual environments
+set -gx OMF_PATH    $HOME/.local/share/omf  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
+set -gx OMF_CONFIG  $HOME/.config/fish/omf  # Customize Oh My Fish configuration path
+source $HOME/.config/fish/env.fish          # Add environment variables
+source $OMF_PATH/init.fish                  # Load oh-my-fish configuration
+source $HOME/.config/fish/envirt.fish       # Initialize virtual environments
 
 #Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
 test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
