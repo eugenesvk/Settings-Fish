@@ -4,7 +4,7 @@ set -x	SSH_KEY_PATH	$HOME/.ssh/IDs/rsa_id
 set -gx DISPLAY "localhost:0.0"
 set -gx SSH_ASKPASS "/usr/lib/git-core/git-gui--askpass"
 
-source $HOME/.config/ssh-find-agent.fish	# find all ssh-agents
+source $HOME/.config/fish/functions/ssh-find-agent.fish	# find all ssh-agents
 #echo "====Before using `ssh-find-agent -a` (=set_ssh_agent_socket)"; ssh-env-echo
 ssh-find-agent -a	# choose the first agent and set SSH_AUTH_SOCK; `-c` manually
 #echo "====After using `ssh-find-agent -a`"; ssh-env-echo
