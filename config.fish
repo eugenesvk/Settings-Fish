@@ -5,6 +5,9 @@ if test "$system" = Win
   if status -l; source $HOME/.config/fish/profileMSys2.fish; end  # copy of /etc/profile -> fish
   source $HOME/.config/fish/envssh-win.fish                       # enable ssh-agent
 end
+if test "$system" = WinLinux
+  source $HOME/.config/fish/envssh-wsl.fish # enable ssh-agent
+end
 
 set -gx OMF_PATH    $HOME/.local/share/omf  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
 set -gx OMF_CONFIG  $HOME/.config/fish/omf  # Customize Oh My Fish configuration path

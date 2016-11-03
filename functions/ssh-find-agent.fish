@@ -39,20 +39,20 @@ end
 
 function find_all_ssh_agent_sockets
 	set _SSH_AGENT_SOCKETS (find /tmp/ -type s -name agent.\* 2>/dev/null | grep '/tmp/ssh-.*/agent.*' 2>/dev/null)
-	_debug_print "$_SSH_AGENT_SOCKETS"
+	_debug_print "SSH sockets: $_SSH_AGENT_SOCKETS"
 end
 function find_all_gpg_agent_sockets
 	set _GPG_AGENT_SOCKETS (find /tmp/ -type s -name S.gpg-agent.ssh 2>/dev/null | grep '/tmp/gpg-.*/S.gpg-agent.ssh' 2>/dev/null)
-	_debug_print "$_GPG_AGENT_SOCKETS"
+	_debug_print "GPG sockets: $_GPG_AGENT_SOCKETS"
 end
 function find_all_gnome_keyring_agent_sockets
 	set _GNOME_KEYRING_AGENT_SOCKETS (find /tmp/ -type s -name ssh 2>/dev/null | grep '/tmp/keyring-.*/ssh$' 2>/dev/null)
-	_debug_print "$_GNOME_KEYRING_AGENT_SOCKETS"
+	_debug_print "Gnome sockets: $_GNOME_KEYRING_AGENT_SOCKETS"
 end
 function find_all_osx_keychain_agent_sockets
 	test -n "$TMPDIR"; or set TMPDIR /tmp
 	#set _OSX_KEYCHAIN_AGENT_SOCKETS (find $TMPDIR/ -type s -regex '.*/ssh-.*/agent..*$' 2>/dev/null)
-	_debug_print "$_OSX_KEYCHAIN_AGENT_SOCKETS"
+	_debug_print "OSX sockets: $_OSX_KEYCHAIN_AGENT_SOCKETS"
 end
 
 function test_agent_socket
@@ -64,7 +64,7 @@ function test_agent_socket
 		#echo "===Mid: Sock[$SOCKET] SSH_AUTH_SOCK[$SSH_AUTH_SOCK]=="
 	set -e SSH_AUTH_SOCK
 	#echo "===Out: Sock[$SOCKET] SSH_AUTH_SOCK[$SSH_AUTH_SOCK]=="
-	_debug_print $result
+	_debug_print "status of `ssh-add -l` $result"
 	if test $result -eq 0     # contactible and has keys loaded
 		set -gx SSH_AUTH_SOCK $SOCKET
 			set _KEY_COUNT (ssh-add -l | wc -l | tr -d ' ')
@@ -123,7 +123,7 @@ function find_all_agent_sockets
 	find_live_gpg_agents
 	find_live_gnome_keyring_agents
 	find_live_osx_keychain_agents
-	_debug_print "$_LIVE_AGENT_LIST"
+	_debug_print "Live agents: $_LIVE_AGENT_LIST"
 	set _LIVE_AGENT_LIST (echo $_LIVE_AGENT_LIST | tr ' ' '\n' | sort -n -t: -k 2 -k 1)
 	set _LIVE_AGENT_SOCK_LIST ""
 	if test $_SHOW_IDENTITY -gt 0

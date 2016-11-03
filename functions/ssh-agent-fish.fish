@@ -11,11 +11,11 @@ function ssh-agent-fish -d 'Launch the ssh-agent and add the id_rsa identity'
 			echo "ssh-agent running on pid $SSH_AGENT_PID"
 		else if test $AgentCount -gt 0
 			if read_confirm "$AgentCount agent(s) with var SSH_AGENT_PID empty, assign a random one?"
-				set -Ux SSH_AGENT_PID $AgentPIDs[1]
+				set -e SSH_AGENT_PID; set -Ux SSH_AGENT_PID $AgentPIDs[1]	# unset stray globar var first
 				echo "SSH_AGENT_PID set to $SSH_AGENT_PID"
 			end
 		else
-			_clear_empty_sock
+			ssh-agent-empty-sock
 			eval (command ssh-agent -c | sed 's/^setenv/set -Ux/')
 			#ssh-env-echo
 		end
@@ -26,6 +26,8 @@ function ssh-agent-fish -d 'Launch the ssh-agent and add the id_rsa identity'
 	else if test $argv[1] = "-k"
 		if test $AgentCount -eq 0
 			echo "Nothing to kill, no agents running"
+			set -e SSH_AGENT_PID
+			ssh-agent-empty-sock
 		else if test -z $SSH_AGENT_PID # set -q (query) alternative check if var is set
 			if read_confirm "$AgentCount agent(s) with var SSH_AGENT_PID empty, kill a random one?"
 				set -Ux SSH_AGENT_PID $AgentPIDs[1]
@@ -41,17 +43,4 @@ function ssh-agent-fish -d 'Launch the ssh-agent and add the id_rsa identity'
 		echo "Not doing anything: unknown argument(s) $argv"
 		return 2
 	end
-end
-
-function _clear_empty_sock -d "Erase empty SSH_AUTH_SOCK to prevent override of universal var"
-	if begin
-		set -q SSH_AUTH_SOCK        	# variable exists
-		and test -z "$SSH_AUTH_SOCK"	# variable is empty
-		end
-		set -e SSH_AUTH_SOCK	# unset empty var to give access back to universl var
-		echo "Erased empty SSH_AUTH_SOCK"
-	end
-	# alternative way of checking
-	#set -l SSH_TestEnv_Sock (env | grep '[S]SH_AUTH_SOCK' 2>/dev/null)
-	#if test $SSH_TestEnv_Sock = "SSH_AUTH_SOCK="
 end
