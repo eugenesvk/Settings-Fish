@@ -13,14 +13,14 @@ if test -z "$SSH_AUTH_SOCK"           # if no agent socket set, run new
 	#echo "====New agent since SSH_AUTH_SOCK was empty"; ssh-env-echo
 	#ssh-agent-fish
 	# if no keys, make next `ssh` command start an agent, add all keys and continue as normal
-	ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list ~/.ssh/IDs; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add -c $SSH_KEY_LIST; and functions -e ssh; ssh'
-	#-c Added identities should be subject to confirmation before being used for authentication
+	ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list ~/.ssh/IDs; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add $SSH_KEY_LIST; and functions -e ssh; ssh'
+	# if using agent forwarding, add `-c` flag to `ssh-add $SSH_KEY_LIST` to
+	#-c Added identities should be confirmed before being used for authentication, use IF forwarding
 	#-l Lists fingerprints of all identities currently represented by the agent
 	else if test ! (pgrep -U $USER ssh-agent) # no ssh-agents running, though socket var is set
-		#rm -f $SSH_AUTH_SOCK; echo "removing socket file from WSL"
 		echo "$SSH_AUTH_SOCK refers to an empty folder, removing it and clearing the variable"
 		rm -rf (echo "$SSH_AUTH_SOCK" | sed 's/\/agent.*//'); ssh-agent-empty-sock
-		ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list ~/.ssh/IDs; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add -c $SSH_KEY_LIST; and functions -e ssh; ssh'
+		ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list ~/.ssh/IDs; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add $SSH_KEY_LIST; and functions -e ssh; ssh'
 end
 
 #ssh-agent -k; set -e SSH_AGENT_PID; set -e SSH_AUTH_SOCK

@@ -27,7 +27,11 @@ function ssh-env-echo -d 'Print SSH environment variables, -f for additional pro
 			end
 		end
 		set_color $ORANGE; echo "Agent processes"; set_color normal; psg ssh-agent
-		set_color $ORANGE; echo -n "Private Keys"; set_color normal; echo ' stored in $SSH_KEY_LIST'
+		set -l AgentPIDs (pgrep -U $USER ssh-agent)
+		if test -n "$AgentPIDs"
+			set_color $ORANGE; echo "Agent loaded keys"; set_color normal; ssh-add -l -E md5
+		end
+		set_color $ORANGE; echo -n "Private keys"; set_color normal; echo ' stored in $SSH_KEY_LIST'
 		for i in (seq (count $SSH_KEY_LIST))
 			echo $SSH_KEY_LIST[$i]
 		end
