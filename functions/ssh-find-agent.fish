@@ -57,17 +57,21 @@ end
 
 function test_agent_socket
 	set -l SOCKET $argv[1]; set -l result ""; set -l _KEY_COUNT ""
-	#echo "===In : Sock[$SOCKET] SSH_AUTH_SOCK[$SSH_AUTH_SOCK]=="
+	_debug_print "===In : Sock[$SOCKET] AUTH_SOCK[$SSH_AUTH_SOCK] LiveAgents[$_LIVE_AGENT_LIST]=="
 	set -gx SSH_AUTH_SOCK $SOCKET
 		ssh-add -l >/dev/null 2>/dev/null
 		set result $status
-		#echo "===Mid: Sock[$SOCKET] SSH_AUTH_SOCK[$SSH_AUTH_SOCK]=="
+		_debug_print "===Mid: Sock[$SOCKET] AUTH_SOCK[$SSH_AUTH_SOCK] LiveAgents[$_LIVE_AGENT_LIST]=="
 	set -e SSH_AUTH_SOCK
-	#echo "===Out: Sock[$SOCKET] SSH_AUTH_SOCK[$SSH_AUTH_SOCK]=="
+	_debug_print "===Out: Sock[$SOCKET] AUTH_SOCK[$SSH_AUTH_SOCK] LiveAgents[$_LIVE_AGENT_LIST]=="
 	_debug_print "status of `ssh-add -l` $result"
 	if test $result -eq 0     # contactible and has keys loaded
 		set -gx SSH_AUTH_SOCK $SOCKET
-			set _KEY_COUNT (ssh-add -l | wc -l | tr -d ' ')
+			#alt1 (not working) begin; set -l IFS; set data (cat data.txt); end
+			#alt2: set -l _SSH_KEYS_LIST ""; ssh-add -l | read -z _SSH_KEYS_LIST
+			#alt2: set _KEY_COUNT (printf $_SSH_KEYS_LIST | wc -l | tr -d ' ')
+			#original: set _KEY_COUNT (ssh-add -l | wc -l | tr -d ' ')
+			set _KEY_COUNT (count (ssh-add -l))
 		set -e SSH_AUTH_SOCK
 	end
 	if test $result -eq 1     # contactible but no keys loaded
@@ -76,10 +80,10 @@ function test_agent_socket
 	if test $result -eq 0 -o $result -eq 1
 		if test -n "$_LIVE_AGENT_LIST"
 			set _LIVE_AGENT_LIST "$_LIVE_AGENT_LIST $SOCKET:$_KEY_COUNT"
-			#echo "===AgentList:AddedSocket[$SOCKET]=="
+			_debug_print "===AgentList:AddedSocket[$SOCKET]=="
 		else
 			set _LIVE_AGENT_LIST "$SOCKET:$_KEY_COUNT"
-			#echo "===AgentList:FirstSocket[$SOCKET]=="
+			_debug_print "===AgentList:FirstSocket[$SOCKET]=="
 		end
 		return 0
 	end
@@ -168,8 +172,9 @@ function set_ssh_agent_socket
 		end
 	else
 		# Choose the first available
-		set -l SSH_AUTH_SOCK_LOC (find_all_agent_sockets|tail -n 1|awk -F: '{print $argv[1]}')
+		set -l SSH_AUTH_SOCK_LOC (find_all_agent_sockets|tail -n 1|awk -F: '{print $1}')
 		if test -n "$SSH_AUTH_SOCK_LOC"
+			_debug_print "Setting SSH_AUTH_SOCK to [$SSH_AUTH_SOCK_LOC]"
 			set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK_LOC
 		end
 	end
@@ -180,6 +185,7 @@ function ssh-find-agent
 		if begin test $argv[1] = "-c"; or test $argv[1] = "--choose"; end
 			set_ssh_agent_socket -c
 		else if begin test $argv[1] = "-a"; or test $argv[1] = "--auto"; end
+			_debug_print "Incoming SSH_AUTH_SOCK[$SSH_AUTH_SOCK]"
 			set_ssh_agent_socket
 		end
 	else
