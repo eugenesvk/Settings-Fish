@@ -5,7 +5,7 @@ if test "$SYSTEM_NAME" = Win
 	set -gx SSH_ASKPASS "/usr/lib/git-core/git-gui--askpass"
 end
 if test "$SYSTEM_NAME" = WinLinux
-	set -x SSH_KEY_PATH /mnt/c/Users/Evgeny/.ssh/IDs
+	set -gx SSH_KEY_PATH /mnt/c/Users/Evgeny/.ssh/IDs
 	# Set vars that would allow ssh-add -c confirmation option to work
 	#set -x	DISPLAY	":0.0"	# already defined in main config
 	set -gx SSH_ASKPASS "/usr/bin/ssh-askpass"
