@@ -7,16 +7,19 @@ function fish_user_key_bindings -d 'Fish keybindings'
 	bind \ck       	'kill-whole-line'   	# Ctrl-k clears the input line regardless of cursor pos
 	bind \cq       	'exit'              	# Ctrl-Q Quit Fish
 	bind \e\[1\;10A	'fzf-history-widget'	# Alt-Shift-Up (Ctrl-R default) Paste the selected command from history
-	#bind \e\[1\;5A	'fzf-history-widget'	# Ctrl-Up (Ctrl-R default) Paste the selected command from history
+	bind \e\[1\;4A 	'fzf-history-widget'	# Alt-Shift-Up in Linux
+	#bind \e\e\[A  	'fzf-history-widget'	# Alt-Up in macOS
+	#bind \e\[1\;3A	'fzf-history-widget'	# Alt-Up in Linux
+	bind \e\[1\;5A 	'fzf-history-widget'	# Ctrl-Up
 	bind \eh       	'fzf-history-widget'	# Alt-h (Ctrl-R default) Paste the selected command from history
 	bind \ef       	'fzf-file-widget'   	# Alt-f (Ctrl-T default) Paste the selected files and directories
 	bind \ez       	'fzf-cd-widget'     	# Alt-z (Alt-C default) cd into the selected directory
+	bind \e\[1\;5B 	'fzf-cd-widget'     	# Ctrl-Down
   if bind -M insert > /dev/null 2>&1
     #bind -M insert \ct fzf-file-widget
     bind -M insert \eh 'fzf-history-widget'
     #bind -M insert \ec fzf-cd-widget
   end
-	bind \e\[1\;5B	'fzf-cd-widget'	# Ctrl-Down (Alt-C default) cd into the selected directory
 	#unbound keys qerio[]asgjk;'\zxvnm,
 	fzf_key_bindings
 	#Alt-based key bindings are case sensitive and Control-based key bindings are not
