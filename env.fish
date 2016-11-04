@@ -43,7 +43,7 @@ if test "$system" = Linux -o "$system" = WinLinux
 	set -x	HOMEBREW_BUILD_FROM_SOURCE	1
 end
 if test "$system" = WinLinux
-	set -x	DISPLAY	:0.0
+	set -x	DISPLAY	":0.0"
 end
 if test "$system" = Win
 	set -x USER_NAME   	Evgeny

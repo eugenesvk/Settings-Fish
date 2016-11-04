@@ -1,7 +1,15 @@
-#set -x	SSH_KEY_PATH	$HOME/.ssh/IDs/rsa_id # not sure what this is for
-# Set vars that would allow ssh-add -c confirmation option to work via gui
-#set -gx DISPLAY "localhost:0.0"	# already defined in main config
-set -gx SSH_ASKPASS "/usr/bin/ssh-askpass"
+if test "$SYSTEM_NAME" = Win
+	set -gx	SSH_KEY_PATH	/c/Users/Evgeny/.ssh/IDs
+	# Set vars that would allow ssh-add -c confirmation option to work
+	set -gx DISPLAY "localhost:0.0"
+	set -gx SSH_ASKPASS "/usr/lib/git-core/git-gui--askpass"
+end
+if test "$SYSTEM_NAME" = WinLinux
+	set -x SSH_KEY_PATH /mnt/c/Users/Evgeny/.ssh/IDs
+	# Set vars that would allow ssh-add -c confirmation option to work
+	#set -x	DISPLAY	":0.0"	# already defined in main config
+	set -gx SSH_ASKPASS "/usr/bin/ssh-askpass"
+end
 
 source $HOME/.config/fish/functions/ssh-find-agent.fish	# find all ssh-agents
 #echo "====Before using `ssh-find-agent -a` (=set_ssh_agent_socket)"; ssh-env-echo
@@ -9,18 +17,16 @@ ssh-find-agent -a	# choose the first agent and set SSH_AUTH_SOCK; `-c` manually
 #echo "====After using `ssh-find-agent -a`"; ssh-env-echo
 
 if test -z "$SSH_AUTH_SOCK"           # if no agent socket set, run new
-	#echo "====SSH_AUTH_SOCK was empty"; ssh-env-echo
-	#echo "====New agent since SSH_AUTH_SOCK was empty"; ssh-env-echo
-	#ssh-agent-fish
+	#echo "====New agent since SSH_AUTH_SOCK was empty"; ssh-env-echo; ssh-agent-fish
 	# if no keys, make next `ssh` command start an agent, add all keys and continue as normal
-	ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list ~/.ssh/IDs; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add $SSH_KEY_LIST; and functions -e ssh; ssh'
+	ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list $SSH_KEY_PATH; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add $SSH_KEY_LIST; and functions -e ssh; ssh'
 	# if using agent forwarding, add `-c` flag to `ssh-add $SSH_KEY_LIST` to
 	#-c Added identities should be confirmed before being used for authentication, use IF forwarding
 	#-l Lists fingerprints of all identities currently represented by the agent
 	else if test ! (pgrep -U $USER ssh-agent) # no ssh-agents running, though socket var is set
 		echo "No agents associated with $SSH_AUTH_SOCK, removing it and clearing env var"
 		rm -rf (echo "$SSH_AUTH_SOCK" | sed 's/\/agent.*//'); ssh-agent-empty-sock
-		ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list ~/.ssh/IDs; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add $SSH_KEY_LIST; and functions -e ssh; ssh'
+		ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list $SSH_KEY_PATH; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add $SSH_KEY_LIST; and functions -e ssh; ssh'
 end
 
 #ssh-agent -k; set -e SSH_AGENT_PID; set -e SSH_AUTH_SOCK
