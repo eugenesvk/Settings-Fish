@@ -1,13 +1,11 @@
 if test "$SYSTEM_NAME" = Win
-	set -gx	SSH_KEY_PATH	/c/Users/Evgeny/.ssh/IDs
-	# Set vars that would allow ssh-add -c confirmation option to work
-	set -gx DISPLAY "localhost:0.0"
+	set -gx SSH_KEY_PATH	/c/Users/Evgeny/.ssh/IDs
+	# Set vars that would allow ssh-add -c confirmation option to work. DISPLAY set in env.fish
 	set -gx SSH_ASKPASS "/usr/lib/git-core/git-gui--askpass"
+	#set -gx SSH_ASKPASS "/c/Dev/msys64/usr/lib/git-core/git-askpass"
 end
 if test "$SYSTEM_NAME" = WinLinux
 	set -gx SSH_KEY_PATH /mnt/c/Users/Evgeny/.ssh/IDs
-	# Set vars that would allow ssh-add -c confirmation option to work
-	#set -x	DISPLAY	":0.0"	# already defined in main config
 	set -gx SSH_ASKPASS "/usr/bin/ssh-askpass"
 end
 
@@ -34,8 +32,9 @@ end
 #set -Ux SSH_AUTH_SOCK /tmp; set -e UNITEMP; set -Ux UNITEMP abc;  echo "Env.fish:Socket[$SSH_AUTH_SOCK]"
 #set -Ux SSH_AUTH_SOCK /tmp; set -e UNITEMP1; set -Ux UNITEMP1 abc;  echo "Env.fish:Socket[$SSH_AUTH_SOCK]"
 #set -e SSH_AUTH_SOCK; set -e SSH_AGENT_PID; echo "AgentPID:[$SSH_AGENT_PID]; Socket[$SSH_AUTH_SOCK]"
-#ssh-agent-fish; ssh-env-echo
-#ssh-agent-fish -k; ssh-env-echo
+#ssh-agent-fish; ssh-env-echo -f
+#ssh-agent-fish -k; ssh-env-echo -f
+#ssh-agent-fish; ssh-env-echo -f; ssh-add -c $SSH_KEY_LIST
 
 # Test switching two agents with different number of keys. Socket path (but not PID) defines which agent is used, keys are stored inside the agent. PID defines which agent is killed with `ssh-agent -k`
 #set -Ux prepid $SSH_AGENT_PID; set -Ux presock $SSH_AUTH_SOCK; echo [$prepid] [$presock]

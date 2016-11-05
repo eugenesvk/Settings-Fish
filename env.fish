@@ -54,20 +54,19 @@ if test "$system" = Win
 end
 
 # PATH
-set -gx	TERM        	"xterm-256color"
-set -x 	EDITOR      	"subl -w"
-set -x 	DevH        	$HOME/.dev  	#local development environment for virutalenvs etc.
-set -x 	PYENV_ROOT  	$DevH/.pyenv	#local Python versions/shims; default ~/.pyenv
-#set -x	PYREPO_ROOT 	$PYENV_ROOT/versions/3.5.1/lib/python3.5/site-packages
-set -x 	RBENV_ROOT  	$DevH/.rbenv 	#local Ruby versions/shims; default ~/.rbenv
-set -x 	NODENV_ROOT 	$DevH/.nodenv	#local Nodenv versions/shims; default ~/.nodenv
-#set -x	NPM_ROOT    	$DevH/.nodenv/versions/5.6.0/lib/node_modules/npm
-set -gx	NVM_DIR     	$DevH/.nvm  	#local NVM versions/shims; default ~/.nvm
-set -x 	PLENV_ROOT  	$DevH/.plenv	#local Per versions/shims; default ~/.plenv
-set -x 	_FASD_DATA  	$HOME/.config/.fasd
-set -x 	MANPATH     	/usr/local/share/man $MANPATH
-set -x 	SSH_KEY_PATH	$HOME/.ssh/IDs/rsa_id
-set -x 	PATH        	$HOME/.local/bin /usr/local/sbin $PATH
+set -gx	TERM       	"xterm-256color"
+set -x 	EDITOR     	"subl -w"
+set -x 	DevH       	$HOME/.dev  	#local development environment for virutalenvs etc.
+set -x 	PYENV_ROOT 	$DevH/.pyenv	#local Python versions/shims; default ~/.pyenv
+#set -x	PYREPO_ROOT	$PYENV_ROOT/versions/3.5.1/lib/python3.5/site-packages
+set -x 	RBENV_ROOT 	$DevH/.rbenv 	#local Ruby versions/shims; default ~/.rbenv
+set -x 	NODENV_ROOT	$DevH/.nodenv	#local Nodenv versions/shims; default ~/.nodenv
+#set -x	NPM_ROOT   	$DevH/.nodenv/versions/5.6.0/lib/node_modules/npm
+set -gx	NVM_DIR    	$DevH/.nvm  	#local NVM versions/shims; default ~/.nvm
+set -x 	PLENV_ROOT 	$DevH/.plenv	#local Per versions/shims; default ~/.plenv
+set -x 	_FASD_DATA 	$HOME/.config/.fasd
+set -x 	MANPATH    	/usr/local/share/man $MANPATH
+set -x 	PATH       	$HOME/.local/bin /usr/local/sbin $PATH
 
 # Other environment vars
 set -x HOMEBREW_GITHUB_API_TOKEN    	(cat $HOME/.config/bash/env_github_brew.txt)
