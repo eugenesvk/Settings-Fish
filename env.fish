@@ -16,8 +16,7 @@ alias envcfg 	"subl $HOME/.config/fish/env.fish"   	# Environment vars loaded in
 alias m      	"fasd -f -e mpv"                     	# open frecent files with mpv
 alias sub    	"fasd -f -e subl"                    	# open frecent files with sublime
 
-#set -l system (check_system)
-if test "$system" = OSX
+if test "$SYSTEM_NAME" = OSX
 	set -x USER_NAME   	eugenesv
 	set -x DEFAULT_USER	eugenesv
 	# Color stderr output in red
@@ -34,7 +33,7 @@ if test "$system" = OSX
 	#/usr/local/bin /usr/bin /bin /usr/sbin /sbin #default in '/private/etc/paths'
 	#/opt/X11/bin /usr/local/MacGPG2/bin          #manually added in '/private/etc/paths.d'
 end
-if test "$system" = Linux -o "$system" = WinLinux
+if test "$SYSTEM_NAME" = Linux -o "$SYSTEM_NAME" = WinLinux
 	set -x	USER_NAME                 	es
 	set -x	DEFAULT_USER              	es
 	set -x	MANPATH                   	$HOME/.linuxbrew/share/man $MANPATH
@@ -42,10 +41,10 @@ if test "$system" = Linux -o "$system" = WinLinux
 	set -x	PATH                      	$HOME/.linuxbrew/bin $HOME/.linuxbrew/sbin $PATH
 	set -x	HOMEBREW_BUILD_FROM_SOURCE	1
 end
-if test "$system" = WinLinux
+if test "$SYSTEM_NAME" = WinLinux
 	set -x	DISPLAY	":0.0"
 end
-if test "$system" = Win
+if test "$SYSTEM_NAME" = Win
 	set -x USER_NAME   	Evgeny
 	set -x DEFAULT_USER	Evgeny
 	alias pkg-size "pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
