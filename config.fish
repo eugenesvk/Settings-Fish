@@ -2,11 +2,14 @@
 
 set -gx SYSTEM_NAME (check_system)
 if test "$SYSTEM_NAME" = Win
-  if status -l; source $HOME/.config/fish/profileMSys2.fish; end  # copy of /etc/profile -> fish
-  source $HOME/.config/fish/envssh.fish                           # enable ssh-agent
+  if status -l; source $HOME/.config/fish/profileMSys2.fish; end	# copy of /etc/profile -> fish
+  source $HOME/.config/fish/envssh.fish                         	# enable ssh-agent
 end
 if test "$SYSTEM_NAME" = WinLinux
   source $HOME/.config/fish/envssh.fish # enable ssh-agent
+end
+if test "$SYSTEM_NAME" = OSX
+  source $HOME/.config/fish/envssh-gpg.fish # enable ssh via gpg-agent
 end
 
 set -gx OMF_PATH    $HOME/.local/share/omf  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
