@@ -1,7 +1,7 @@
 function ssh-keys-list -d 'Lists all private ssh keys (no extension) in a given folder'
   set -l KEY_PATH
   if test -z $argv    # no arguments
-		echo "No path given, will look in ~/.ssh"
+		echo "No path given, will look in $SSH_KEY_PATH"
 		set KEY_PATH $SSH_KEY_PATH
 	else
 		set KEY_PATH $argv

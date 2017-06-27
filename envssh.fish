@@ -9,7 +9,7 @@ if test "$SYSTEM_NAME" = WinLinux
 	set -gx SSH_ASKPASS "/usr/bin/ssh-askpass"
 end
 
-source $HOME/.config/fish/functions/ssh-find-agent.fish	# find all ssh-agents
+source $HOME/.config/fish/functions/ssh-find-agent.fish # find all ssh-agents
 #echo "====Before using `ssh-find-agent -a` (=set_ssh_agent_socket)"; ssh-env-echo
 ssh-find-agent -a	# choose the first agent and set SSH_AUTH_SOCK; `-c` manually
 #echo "====After using `ssh-find-agent -a`"; ssh-env-echo
@@ -26,6 +26,7 @@ if test -z "$SSH_AUTH_SOCK"           # if no agent socket set, run new
 		rm -rf (echo "$SSH_AUTH_SOCK" | sed 's/\/agent.*//'); ssh-agent-empty-sock
 		ssh-add -l >/dev/null 2>/dev/null; or alias ssh 'ssh-agent-fish; and ssh-keys-list $SSH_KEY_PATH; and ssh-add -l >/dev/null 2>/dev/null; or ssh-add $SSH_KEY_LIST; and functions -e ssh; ssh'
 end
+
 
 #ssh-agent -k; set -e SSH_AGENT_PID; set -e SSH_AUTH_SOCK
 #set -Ux SSH_AGENT_PID 1234; set -Ux SSH_AUTH_SOCK /tmp; echo "Env.fish:AgentPID:[$SSH_AGENT_PID]; Socket[$SSH_AUTH_SOCK]"
