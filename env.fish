@@ -25,6 +25,7 @@ if test "$SYSTEM_NAME" = OSX
 	set -x STDERRED_ESC_CODE (echo -e "$err_bold$err_red")
 		#set -x STDERRED_BLACKLIST "^(bash|test.*)$"            #blacklist bash, and all programs with names starting with "test"
 	#set -x DYLD_INSERT_LIBRARIES /usr/local/lib/stderred/libstderred.dylib       #color errors in red
+	set -x	Dropbox       	"$HOME/Documents/Dropbox"
 	set -x	CoreUtils_Root	/usr/local/opt/coreutils/libexec
 	set -x	MANPATH       	$CoreUtils_Root/gnuman $MANPATH
 	set -x	PATH          	$CoreUtils_Root/gnubin $PATH
@@ -36,10 +37,15 @@ end
 if test "$SYSTEM_NAME" = Linux -o "$SYSTEM_NAME" = WinLinux
 	set -x	USER_NAME                 	es
 	set -x	DEFAULT_USER              	es
+	set -x	XDG_DATA_DIRS             	$HOME/.linuxbrew/share:$XDG_DATA_DIRS
 	set -x	MANPATH                   	$HOME/.linuxbrew/share/man $MANPATH
 	set -x	INFOPATH                  	$HOME/.linuxbrew/share/info $INFOPATH
 	set -x	PATH                      	$HOME/.linuxbrew/bin $HOME/.linuxbrew/sbin $PATH
 	set -x	HOMEBREW_BUILD_FROM_SOURCE	1
+end
+if test "$SYSTEM_NAME" = Linux
+	set -x	MinGW64_PATH	$DevH/toolchains/mingw-w64-x86_64/bin	#MinGW-w64 toolchain for HandBrake
+	set -x	PATH        	$MinGW64_PATH $PATH
 end
 if test "$SYSTEM_NAME" = WinLinux
 	set -x	DISPLAY	":0.0"
