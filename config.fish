@@ -1,3 +1,10 @@
+# environment variables for GUI apps in catalina
+# https://apple.stackexchange.com/questions/389023/setting-gui-visible-environment-variables-with-os-catalina
+# launchctl setenv FOO BAR
+# launchctl setenv RUSTUP_HOME "$HOME/.dev/rustup"
+# launchctl setenv FOO BAR1
+
+
 # Fish Shell config files (fishshell.com) with Oh-My-Fish (https://github.com/oh-my-fish/)
 
 set -gx SYSTEM_NAME (check_system)
@@ -70,3 +77,16 @@ set -g theme_es_notify_duration   10000
   #1. if test -n "$SSH_CLIENT" # You can fix it by quoting, which forces an argument even if it's empty:
   #2. test -n (EXPRESSION; or echo "")
   #3. use count
+# fish_add_path -g '/usr/local/opt/node@14/bin'
+  # fish_add_path: This is meant to be the easy one-stop shop to adding stuff to $PATH.
+  # Components are normalized by realpath. This means that trailing slashes are ignored and relative paths are made absolute (but symlinks are not resolved). If a component already exists, it is not added again and stays in the same place unless the --move switch is given
+  # By default it'll prepend the given paths to a universal $fish_user_paths, excluding the already-included ones.
+  # can be executed once in an interactive session, or stuffed in config.fish, and it will do The Right Thing
+    # -p --prepend  	[def] add to the front of the variable
+    # -a --append   	add to the end of the variable
+    # -g --global   	use a global    $fish_user_paths
+    # -U --universal	[def] use a universal $fish_user_paths
+    # -P --path     	use $PATH directly
+    # -m --move     	move already existing components to the place they would be added - by default they would be left in place and not added again
+    # -v --verbose  	print the set command used
+    # -n --dry-run  	print the set command that would be used without executing it
