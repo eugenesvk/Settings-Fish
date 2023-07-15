@@ -1,4 +1,4 @@
-function ff -d "Search for case insensitive file in or below current directory"
+function ff -w find -d "Search for case insensitive file in or below current directory"
   if test (count $argv) -lt 2
     find . -iname "*$argv[1]*"
   else

@@ -1,4 +1,4 @@
-function psg -d "Details on a given process with table headers retained (ps aux | grep $argv); use [a]rgv to avoid showing grep command or add grep -v grep"
+function psg -w ps -d "Details on a given process with table headers retained (ps aux | grep $argv); use [a]rgv to avoid showing grep command or add grep -v grep"
   if test -z $argv    # no arguments
 		ps axu | grep -v grep | grep '[C]OMMAND\|'
 	else if test (string length "$argv") -eq 1       # argument of 1 character length
