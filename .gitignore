@@ -4,6 +4,8 @@ functions/node_modules/
 functions/fish_prompt.fish
 functions/__fish_prompt.fish
 functions/fzf_key_bindings.fish
+fish_universal_variables
+fish_variables
 omf/theme
 *.lnk
 fish_read_history
