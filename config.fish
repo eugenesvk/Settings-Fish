@@ -6,9 +6,32 @@
 
 
 # Fish Shell config files (fishshell.com) with Oh-My-Fish (https://github.com/oh-my-fish/)
+# set -x	PATH	$PATH "/outside/"
+if not status --is-interactive
+set -x  	DevH       	"$HOME/.dev"     	# local development environment
+set -x  	RUSTUP_HOME	"$DevH/rustup"   	# Rust toolchain        ; ['~/.rustup']
+set -x  	CARGO_HOME 	"$DevH/cargo"    	# Rust package manager  ; ['~/.cargo']
+set -x  	CargoBin   	"$CARGO_HOME/bin"	# local Rust binaries
+set -x  	PATH       	$CargoBin $PATH
+# set -x	PATH       	$PATH "/not/interactive"
+/usr/local/bin/rtx activate fish | source
+/usr/local/bin/rtx hook-env -s fish | source
 
+# test, some fish instances try to clone HomeBrew
+set -x HOMEBREW_NO_ANALYTICS    	1
+set -x HOMEBREW_INSTALL_FROM_API	1                  	# disable local repo clone (~1G)
+set -x HOMEBREW_AUTO_UPDATE_SECS	(math "60*60*24*7")	# |300| brew update weekly
+end
+
+if status --is-interactive
+# /usr/local/bin/rtx activate fish | source
+# /usr/local/bin/rtx hook-env -s fish | source
+set -gx OMF_PATH    "$HOME/.local/share/omf"	# Path to Oh My Fish install, `-g` global, `-x` export=make it env
+set -gx OMF_CONFIG  "$HOME/.config/fish/omf"	# Customize Oh My Fish configuration path
+source "$HOME/.config/fish/env.fish"        	# Add environment variables
+set -x                                      	PATH	$PATH "/interactive/"
 set -gx SYSTEM_NAME (check_system)
-if test "$SYSTEM_NAME" = Win
+if test "$SYSTEM_NAME" = 'Win'
   if status -l; source $HOME/.config/fish/profileMSys2.fish; end	# copy of /etc/profile -> fish
   source $HOME/.config/fish/envssh.fish                         	# enable ssh-agent
 end
@@ -19,14 +42,9 @@ if test "$SYSTEM_NAME" = OSX
   source $HOME/.config/fish/envssh-gpg.fish # enable ssh via gpg-agent
 end
 
-set -gx OMF_PATH    $HOME/.local/share/omf  # Path to Oh My Fish install, `-g` global, `-x` export=make it env
-set -gx OMF_CONFIG  $HOME/.config/fish/omf  # Customize Oh My Fish configuration path
-source $HOME/.config/fish/env.fish          # Add environment variables
-source $OMF_PATH/init.fish                  # Load oh-my-fish configuration
-source $HOME/.config/fish/envirt.fish       # Initialize virtual environments
-
-#Enables fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
-test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
+if status --is-interactive
+source "$OMF_PATH/init.fish"           	# Load oh-my-fish configuration
+source "$HOME/.config/fish/envirt.fish"	# Initialize virtual environments
 
 # Theme-es config
 set -g theme_es_show_symbols      'yes'   # [yes]
