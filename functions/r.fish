@@ -1,6 +1,6 @@
-function R
-    echo '(R)'
+function R -w echo
+  echo '(R)'
 end
-function r
-    echo '(r)'
+function r -w echo
+  echo '(r)'
 end

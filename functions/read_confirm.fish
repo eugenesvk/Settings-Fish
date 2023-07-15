@@ -3,14 +3,14 @@ function read_confirm -d "Ask for confirmation of passed text"
   while true
     read -l -p read_confirm_prompt confirm
     switch $confirm
-      case Y y
+      case 'Y' 'y'
         return 0
-      case '' N n
+      case '' 'N' 'n'
         return 1
     end
   end
 end
 
 function read_confirm_prompt
-  echo "$_read_confirm_prompt [Y/n]"
+  echo "$_read_confirm_prompt [y/N]"
 end

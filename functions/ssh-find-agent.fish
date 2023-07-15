@@ -2,7 +2,7 @@
 
 set _LIVE_AGENT_LIST            	""
 set _LIVE_AGENT_SOCK_LIST       	""
-set _DEBUG                      	""
+set _DEBUG                      	0
 set _SSH_AGENT_SOCKETS          	""
 set _GPG_AGENT_SOCKETS          	""
 set _GNOME_KEYRING_AGENT_SOCKETS	""

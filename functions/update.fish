@@ -4,6 +4,6 @@ function update -d "Update everything (Homebrew + packages, Oh-My-Fish)"
 	if test "$system" = OSX
 		echo '==Updating Homebrew==';                       	brew update
 		echo '==Updating Homebrew packages==';              	brew upgrade
-		echo '==Cleaning up downloaded Homebrew packages==';	brew cleanup
+		echo '==Cleaning up downloaded Homebrew packages==';	brew cleanup --prune 0 -s
 	end
 end
