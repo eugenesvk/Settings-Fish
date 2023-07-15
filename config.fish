@@ -65,6 +65,40 @@ set -g theme_es_show_ruby_v      	'yes'	#|yes|no       	  →	Show Ruby promp
 set -g theme_es_notify_duration  	1    	#              	   	Notify if command runs longer than this time (seconds)
 #top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
 #other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)
+set -g theme_es_icon_NODE                	\UE718" "	#  from Devicons or ⬢
+set -g theme_es_icon_RUBY                	\UE791" "	# \UE791 from Devicons; \UF047; \UE739; 💎
+set -g theme_es_icon_PYTHON              	\UE606" "	# \UE606; \UE73C
+set -g theme_es_icon_PERL                	\UE606" "	# \UE606; \UE73C
+set -g theme_es_icon_TEST                	\UF091   	# 
+set -g theme_es_icon_VCS_STAGED          	\UF06B   	#  (added) →
+set -g theme_es_icon_VCS_DELETED         	\UF06C   	# 
+set -g theme_es_icon_VCS_MODIFIED        	\UF06D   	# 
+set -g theme_es_icon_VCS_RENAMED         	\UF06E   	# 
+set -g theme_es_icon_VCS_UNMERGED        	\UF026   	#    #═: there are unmerged commits
+set -g theme_es_icon_VCS_UNTRACKED       	\UF02C   	#    #●: there are untracked (new) files
+set -g theme_es_icon_VCS_DIFF            	\UF06B" "	# 
+set -g theme_es_icon_VCS_STASH           	\UF0CF" "	#      #✭: there are stashed commits
+set -g theme_es_icon_VCS_INCOMING_CHANGES	\UF00B" "	#  or \UE1EB or \UE131
+set -g theme_es_icon_VCS_OUTGOING_CHANGES	\UF00C" "	#  or \UE1EC or 
+set -g theme_es_icon_VCS_TAG             	\UF015" "	# 
+set -g theme_es_icon_VCS_BOOKMARK        	\UF07B" "	# 
+set -g theme_es_icon_VCS_COMMIT          	\UF01F" "	# 
+set -g theme_es_icon_VCS_BRANCH          	\UE0A0   	# \UE0A0 or \UF020
+set -g theme_es_icon_VCS_BRANCH_REMOTE   	\UE804" "	#  not displayed, should be branch icon on a book
+set -g theme_es_icon_VCS_BRANCH_DETACHED 	\U27A6" "	# ➦
+set -g theme_es_icon_VCS_GIT             	\UF00A" "	#  from Octicons
+set -g theme_es_icon_VCS_HG              	\UF0DD" "	# Got cut off from Octicons on patching
+set -g theme_es_icon_VCS_CLEAN           	\UF03A   	# 
+set -g theme_es_icon_VCS_PUSH            	\UF005" "	# 
+set -g theme_es_icon_VCS_DIRTY           	±        	#
+set -g theme_es_icon_ARROW_UP            	\UF03D"" 	#  ↑
+set -g theme_es_icon_ARROW_DOWN          	\UF03F"" 	#  ↓
+set -g theme_es_icon_OK                  	\UF03A   	# 
+set -g theme_es_icon_FAIL                	\UF081   	# 
+set -g theme_es_icon_STAR                	\UF02A   	# 
+set -g theme_es_icon_JOBS                	\U2699" "	# ⚙
+set -g theme_es_icon_VIM                 	\UE7C5" "	# 
+set -g theme_es_icon_LOCK                	        	#
 end
 
 # Extra info
