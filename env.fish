@@ -26,14 +26,14 @@ set -x HOMEBREW_AUTO_UPDATE_SECS	(math "60*60*24*7")	# |300| brew update weekly
 # Set PATH variables
 set -gx 	TERM           	"xterm-256color"
 set -x  	EDITOR         	"subl -w"
-set -x  	DevH           	"$HOME/.dev"  	# local development environment
-set -x  	PYENV_ROOT     	"$DevH/.pyenv"	# Python versions/shims ; ['~/.pyenv']
+set -x  	DevH           	"$HOME/.dev" 	# local development environment
+set -x  	PYENV_ROOT     	"$DevH/pyenv"	# Python versions/shims ; ['~/.pyenv']
 #set -x 	PYREPO_ROOT    	$PYENV_ROOT/versions/3.5.1/lib/python3.5/site-packages
-set -x  	RBENV_ROOT     	"$DevH/.rbenv" 	# Ruby   versions/shims ; ['~/.rbenv']
-set -x  	NODENV_ROOT    	"$DevH/.nodenv"	# Nodenv versions/shims ; ['~/.nodenv']
+set -x  	RBENV_ROOT     	"$DevH/rbenv" 	# Ruby   versions/shims ; ['~/.rbenv']
+set -x  	NODENV_ROOT    	"$DevH/nodenv"	# Nodenv versions/shims ; ['~/.nodenv']
 #set -x 	NPM_ROOT       	"$DevH/.nodenv"/versions/5.6.0/lib/node_modules/npm
-set -gx 	NVM_DIR        	"$DevH/.nvm"  	# NVM    versions/shims ; ['~/.nvm']
-set -x  	PLENV_ROOT     	"$DevH/.plenv"	# Perl   versions/shims ; ['~/.plenv']
+set -gx 	NVM_DIR        	"$DevH/nvm"   	# NVM    versions/shims ; ['~/.nvm']
+set -x  	PLENV_ROOT     	"$DevH/plenv" 	# Perl   versions/shims ; ['~/.plenv']
 set -x  	GOPATH         	"$DevH/go"    	# GO dev environment    ; ['~/go']
 set -x  	RUSTUP_HOME    	"$DevH/rustup"	# Rust toolchain        ; ['~/.rustup']
 set -x  	CARGO_HOME     	"$DevH/cargo" 	# Rust package manager  ; ['~/.cargo']
@@ -61,10 +61,15 @@ if test "$SYSTEM_NAME" = OSX
   set -x	Dropbox             	"$HOME/Documents/Dropbox"
   set -x	GoRoot              	'/usr/local/opt/go/libexec/bin'
   set -x	CoreUtils_Root      	'/usr/local/opt/coreutils/libexec'
-  set -x	GOBin               	"$GOPATH/bin"    	# local GO binaries
-  set -x	CargoBin            	"$CARGO_HOME/bin"	# local Rust binaries
+  set -x	GOBin               	"$GOPATH/bin"     	# local GO binaries
+  set -x	CargoBin            	"$CARGO_HOME/bin" 	# local Rust binaries
+  set   	PyenvBin            	"$PYENV_ROOT/bin" 	# pyenv itself
+  set   	RbenvBin            	"$RBENV_ROOT/bin" 	# rbenv itself
+  set   	NodenvBin           	"$NODENV_ROOT/bin"	# nodenv itself
+  set   	GoenvBin            	"$GOENV_ROOT/bin" 	# goenv itself
   set -x	MANPATH             	"$CoreUtils_Root/gnuman" $MANPATH
-  set -x	PATH                	"$CoreUtils_Root/gnubin" $GOBin $CargoBin $PATH
+  set -x	PATH                	"$CoreUtils_Root/gnubin" $GOBin $CargoBin $PyenvBin $RbenvBin $NodenvBin $GoenvBin $PATH
+
   if command -v $GoRoot/go > /dev/null ; set -x PATH $GoRoot $PATH; end
 
   #set -gx	PKG_CONFIG_PATH	"$PYENV_ROOT/versions/3.6-dev/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/lib"
