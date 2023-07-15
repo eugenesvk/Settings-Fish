@@ -53,16 +53,16 @@ source "$OMF_PATH/init.fish"           	# Load oh-my-fish configuration
 source "$HOME/.config/fish/envirt.fish"	# Initialize virtual environments
 
 # Theme-es config
-set -g theme_es_show_symbols     	'yes'	#|yes|no	  ←	Show pre-path symbols, e.g. read-only
-set -g theme_es_verbose_git_ahead	'yes'	#|yes|no
-set -g theme_es_show_git_count   	'no' 	#|no|yes       	  ←	Show git count
-set -g theme_es_git_sha          	'no' 	#|short|long¦no	  →	Show git sha (short/long)
-set -g theme_es_show_user        	'no' 	#|no|yes       	  →	Show username
-set -g theme_es_show_hostname    	'yes'	#|yes|no       	  →	Show hostname on SSH connections
-set -g theme_es_show_node_v      	'yes'	#|yes|no       	  →	Show Node.js version
-set -g theme_es_show_python_v    	'yes'	#|yes|no       	  →	Show Python version
-set -g theme_es_show_ruby_v      	'yes'	#|yes|no       	  →	Show Ruby prompt @ gemset
-set -g theme_es_notify_duration  	1    	#              	   	Notify if command runs longer than this time (seconds)
+set -g theme_es_show_symbols     	'yes'  	#|yes|no	  ←	Show pre-path symbols, e.g. read-only
+set -g theme_es_verbose_git_ahead	'yes'  	#|yes|no
+set -g theme_es_show_git_count   	'no'   	#|no|yes       	  ←	Show git count
+set -g theme_es_git_sha          	'short'	#|short|long¦no	  →	Show git sha (short/long)
+set -g theme_es_show_user        	'no'   	#|no|yes       	  →	Show username
+set -g theme_es_show_hostname    	'yes'  	#|yes|no       	  →	Show hostname on SSH connections
+set -g theme_es_show_node_v      	'yes'  	#|yes|no       	  →	Show Node.js version
+set -g theme_es_show_python_v    	'yes'  	#|yes|no       	  →	Show Python version
+set -g theme_es_show_ruby_v      	'yes'  	#|yes|no       	  →	Show Ruby prompt @ gemset
+set -g theme_es_notify_duration  	10     	#              	   	Notify if command runs longer than this time (seconds)
 #top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
 #other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)
 set -g theme_es_icon_NODE                	\UE718" "	#  from Devicons or ⬢
