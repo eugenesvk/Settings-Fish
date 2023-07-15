@@ -3,6 +3,8 @@ fishd.*
 functions/node_modules/
 functions/fish_prompt.fish
 functions/__fish_prompt.fish
+functions/sshfs.fish
+functions/br.fish
 functions/fzf_key_bindings.fish
 fish_universal_variables
 fish_variables
