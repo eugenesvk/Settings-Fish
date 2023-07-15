@@ -36,10 +36,16 @@ if test "$SYSTEM_NAME" = 'Win'
   source $HOME/.config/fish/envssh.fish                         	# enable ssh-agent
 end
 if test "$SYSTEM_NAME" = WinLinux
-  source $HOME/.config/fish/envssh.fish # enable ssh-agent
+  if status --is-login
+    # source $HOME/.config/fish/envssh.fish # enable ssh-agent
+  end
+  [ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
 end
-if test "$SYSTEM_NAME" = OSX
+if test "$SYSTEM_NAME" = 'OSX'
   source $HOME/.config/fish/envssh-gpg.fish # enable ssh via gpg-agent
+  # test -e {$HOME}/.config/iterm2/.iterm2_shell_integration.fish; and source {$HOME}/.config/iterm2/.iterm2_shell_integration.fish  # enable fish integration in iTerm2. ** recursive wildcard (search in folders recursively)
+  set -g theme_ismacOS	'yes'	# [no] yes
+end
 end
 
 if status --is-interactive
@@ -47,14 +53,19 @@ source "$OMF_PATH/init.fish"           	# Load oh-my-fish configuration
 source "$HOME/.config/fish/envirt.fish"	# Initialize virtual environments
 
 # Theme-es config
-set -g theme_es_show_symbols      'yes'   # [yes]
-set -g theme_es_verbose_git_ahead 'yes'   # [yes]
-set -g theme_es_show_git_sha      'short' # [short], long
-set -g theme_es_show_user         'no'    # [no], yes
-set -g theme_es_show_hostname     'yes'   # [yes]
-set -g theme_es_notify_duration   10000
+set -g theme_es_show_symbols     	'yes'	#|yes|no	  ←	Show pre-path symbols, e.g. read-only
+set -g theme_es_verbose_git_ahead	'yes'	#|yes|no
+set -g theme_es_show_git_count   	'no' 	#|no|yes       	  ←	Show git count
+set -g theme_es_git_sha          	'no' 	#|short|long¦no	  →	Show git sha (short/long)
+set -g theme_es_show_user        	'no' 	#|no|yes       	  →	Show username
+set -g theme_es_show_hostname    	'yes'	#|yes|no       	  →	Show hostname on SSH connections
+set -g theme_es_show_node_v      	'yes'	#|yes|no       	  →	Show Node.js version
+set -g theme_es_show_python_v    	'yes'	#|yes|no       	  →	Show Python version
+set -g theme_es_show_ruby_v      	'yes'	#|yes|no       	  →	Show Ruby prompt @ gemset
+set -g theme_es_notify_duration  	1    	#              	   	Notify if command runs longer than this time (seconds)
 #top themes: trout (check rbenv version), l, clearance (master changes color in addition to signs)
 #other themes: gnuykeaj, jacaetevha (2-line), Zish (exit code on right), flash (orange colors)
+end
 
 # Extra info
 #Custom functions (autoloaded from '~/.config/fish/functions/'), also 'aliases' are treated as a function
