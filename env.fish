@@ -69,6 +69,10 @@ if test "$SYSTEM_NAME" = OSX
   set   	GoenvBin            	"$GOENV_ROOT/bin" 	# goenv itself
   set -x	MANPATH             	"$CoreUtils_Root/gnuman" $MANPATH
   set -x	PATH                	"$CoreUtils_Root/gnubin" $GOBin $CargoBin $PyenvBin $RbenvBin $NodenvBin $GoenvBin $PATH
+  # 'XDG'	               	# user-specific files
+  set -x 	XDG_CONFIG_HOME	"$HOME/.config"      	#~/.config     	configuration
+  set -x 	XDG_DATA_HOME  	"$HOME/AppData"      	#~/.local/share	data
+  set -x 	XDG_STATE_HOME 	"$HOME/AppData/state"	#~/.local/state	unimportant/non-portable state
 
   if command -v $GoRoot/go > /dev/null ; set -x PATH $GoRoot $PATH; end
 
