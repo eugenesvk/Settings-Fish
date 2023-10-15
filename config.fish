@@ -27,7 +27,7 @@ if status --is-interactive
 # /usr/local/bin/rtx activate fish | source
 # /usr/local/bin/rtx hook-env -s fish | source
 set -gx SYSTEM_NAME (check_system)
-set -gx OMF_PATH    "$HOME/.local/share/omf"	# Path to Oh My Fish install, `-g` global, `-x` export=make it env
+set -gx OMF_PATH    "$HOME/AppData/omf"     	# Path to Oh My Fish install, `-g` global, `-x` export=make it env
 set -gx OMF_CONFIG  "$HOME/.config/fish/omf"	# Customize Oh My Fish configuration path
 source "$HOME/.config/fish/env.fish"        	# Add environment variables
 set -x                                      	PATH	$PATH "/interactive/"
