@@ -53,9 +53,11 @@ source "$OMF_PATH/init.fish"           	# Load oh-my-fish configuration
 source "$HOME/.config/fish/envirt.fish"	# Initialize virtual environments
 
 # Theme-es config
-set -g theme_es_show_symbols     	'yes'  	#|yes|no	  ←	Show pre-path symbols, e.g. read-only
-set -g theme_es_verbose_git_ahead	'yes'  	#|yes|no
-set -g theme_es_show_git_count   	'no'   	#|no|yes       	  ←	Show git count
+set -g theme_es_show_symbols     	'yes'  	#|yes|no       	  ←	Show pre-path symbols, e.g. read-only
+set -g theme_es_extra_space      	''     	# ' '          	  ←	Add extra symbol after each icon (e.g., an extra space)
+set -g theme_es_verbose_git_ahead	'yes'  	#|yes|no       	   	 
+set -g theme_es_show_git_count   	'yes'  	#|no|yes       	  ←	Show git count
+set -g theme_es_spacer_count     	''     	# ' '          	  ←	Add extra symbol before each count (e.g., an extra space)
 set -g theme_es_git_sha          	'short'	#|short|long¦no	  →	Show git sha (short/long)
 set -g theme_es_show_user        	'no'   	#|no|yes       	  →	Show username
 set -g theme_es_show_hostname    	'yes'  	#|yes|no       	  →	Show hostname on SSH connections
