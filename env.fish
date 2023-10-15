@@ -26,17 +26,18 @@ set -x HOMEBREW_AUTO_UPDATE_SECS	(math "60*60*24*7")	# |300| brew update weekly
 # Set PATH variables
 set -gx 	TERM           	"xterm-256color"
 set -x  	EDITOR         	"subl -w"
-set -x  	DevH           	"$HOME/.dev" 	# local development environment
-set -x  	PYENV_ROOT     	"$DevH/pyenv"	# Python versions/shims ; ['~/.pyenv']
+set -x  	DevH           	"$HOME/Dev"              	# local development folder
+set -x  	DevD           	"$HOME/AppData/4 Develop"	# local development environment & data
+set -x  	PYENV_ROOT     	"$DevD/pyenv"            	# Python versions/shims ; ['~/.pyenv']
 #set -x 	PYREPO_ROOT    	$PYENV_ROOT/versions/3.5.1/lib/python3.5/site-packages
-set -x  	RBENV_ROOT     	"$DevH/rbenv" 	# Ruby   versions/shims ; ['~/.rbenv']
-set -x  	NODENV_ROOT    	"$DevH/nodenv"	# Nodenv versions/shims ; ['~/.nodenv']
-#set -x 	NPM_ROOT       	"$DevH/.nodenv"/versions/5.6.0/lib/node_modules/npm
-set -gx 	NVM_DIR        	"$DevH/nvm"   	# NVM    versions/shims ; ['~/.nvm']
-set -x  	PLENV_ROOT     	"$DevH/plenv" 	# Perl   versions/shims ; ['~/.plenv']
-set -x  	GOPATH         	"$DevH/go"    	# GO dev environment    ; ['~/go']
-set -x  	RUSTUP_HOME    	"$DevH/rustup"	# Rust toolchain        ; ['~/.rustup']
-set -x  	CARGO_HOME     	"$DevH/cargo" 	# Rust package manager  ; ['~/.cargo']
+set -x  	RBENV_ROOT     	"$DevD/rbenv" 	# Ruby   versions/shims ; ['~/.rbenv']
+set -x  	NODENV_ROOT    	"$DevD/nodenv"	# Nodenv versions/shims ; ['~/.nodenv']
+#set -x 	NPM_ROOT       	"$DevD/.nodenv"/versions/5.6.0/lib/node_modules/npm
+set -gx 	NVM_DIR        	"$DevD/nvm"   	# NVM    versions/shims ; ['~/.nvm']
+set -x  	PLENV_ROOT     	"$DevD/plenv" 	# Perl   versions/shims ; ['~/.plenv']
+set -x  	GOPATH         	"$DevD/go"    	# GO dev environment    ; ['~/go']
+set -x  	RUSTUP_HOME    	"$DevD/rustup"	# Rust toolchain        ; ['~/.rustup']
+set -x  	CARGO_HOME     	"$DevD/cargo" 	# Rust package manager  ; ['~/.cargo']
 set -x  	STARSHIP_CONFIG	"$HOME/.config/starship/starship.toml" # starship prompt config file
 # set -x	_FASD_DATA     	"$HOME/.config/.fasd"
 
@@ -88,8 +89,8 @@ if test "$SYSTEM_NAME" = Linux -o "$SYSTEM_NAME" = WinLinux
   set -x	XDG_DATA_DIRS	"$LBrewHome/share:$XDG_DATA_DIRS"
   set -x	MANPATH      	"$LBrewHome/share/man" $MANPATH
   set -x	INFOPATH     	"$LBrewHome/share/info" $INFOPATH
-  if test -d $DevH/toolchains/mingw-w64-x86_64/bin
-    set -x	MinGW64PATH	$DevH/toolchains/mingw-w64-x86_64/bin #toolchain for HandBrake
+  if test -d $DevD/toolchains/mingw-w64-x86_64/bin
+    set -x	MinGW64PATH	$DevD/toolchains/mingw-w64-x86_64/bin #toolchain for HandBrake
   end
   set -x  	PATH "$LBrewHome/bin" "$LBrewHome/sbin" "$MinGW64PATH" $PATH
   # set -x	HOMEBREW_BUILD_FROM_SOURCE	1 # not needed since new LinuxBrewHome allows bottles
