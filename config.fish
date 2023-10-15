@@ -8,10 +8,11 @@
 # Fish Shell config files (fishshell.com) with Oh-My-Fish (https://github.com/oh-my-fish/)
 # set -x	PATH	$PATH "/outside/"
 if not status --is-interactive
-set -x  	DevH       	"$HOME/.dev"     	# local development environment
-set -x  	RUSTUP_HOME	"$DevH/rustup"   	# Rust toolchain        ; ['~/.rustup']
-set -x  	CARGO_HOME 	"$DevH/cargo"    	# Rust package manager  ; ['~/.cargo']
-set -x  	CargoBin   	"$CARGO_HOME/bin"	# local Rust binaries
+set -x  	DevD       	"$HOME/AppData/4 Develop"	# local development environment & data
+set -x  	DevH       	"$HOME/Dev"              	# local development folder
+set -x  	RUSTUP_HOME	"$DevD/rustup"           	# Rust toolchain        ; ['~/.rustup']
+set -x  	CARGO_HOME 	"$DevD/cargo"            	# Rust package manager  ; ['~/.cargo']
+set -x  	CargoBin   	"$CARGO_HOME/bin"        	# local Rust binaries
 set -x  	PATH       	$CargoBin $PATH
 # set -x	PATH       	$PATH "/not/interactive"
 /usr/local/bin/rtx activate fish | source
