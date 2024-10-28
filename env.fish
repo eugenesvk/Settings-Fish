@@ -96,28 +96,28 @@ if test "$SYSTEM_NAME" = Linux -o "$SYSTEM_NAME" = WinLinux
   # set -x	HOMEBREW_BUILD_FROM_SOURCE	1 # not needed since new LinuxBrewHome allows bottles
 end
 if test "$SYSTEM_NAME" = Linux
-	# set -x	QT_QPA_PLATFORMTHEME	qt5ct	# Make sure QT5 apps in Gnome look better
+  # set -x	QT_QPA_PLATFORMTHEME	qt5ct	# Make sure QT5 apps in Gnome look better
 end
 if test "$SYSTEM_NAME" = WinLinux
-	set       	asdfH              	(brew --prefix asdf)                                         	#1) bypassed asdf shims via direnv 2) readlink -f to resolve symlinks
-	if test -e	"$asdfH/asdf.fish";	source "$asdfH/asdf.fish" 2>/dev/null; end                   	# Suppress Warning about invalid $ASDF_DIR/shims folder
-	# set -x  	ASDF_ROOT          	"$asdfH/bin"                                                 	# asdf bins only (without shims) for direnv
-	umask     	027                	                                                             	# Fixes Homebrew error (new folders can't be world-writable
-	set -x    	DISPLAY            	(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0	# WSL2 fix (superuser.com/questions/1476086/error-cant-open-display-0), was
-	# set -x  	DISPLAY            	":0.0"                                                       	# old WSL, doesn't work in WSL2
-	set -x    	PATH               	"$HOME/perl5/bin" $PATH
-	set -x    	PERL5LIB           	$HOME/perl5/lib/perl5:/mnt/d/Dropbox/Settings/Dev/Perl5/lib(echo (varAlt PERL5LIB ":$PERL5LIB"))
-	set -x    	PERL_LOCAL_LIB_ROOT	"$HOME/perl5" $PERL_LOCAL_LIB_ROOT
-	set -x    	PERL_MB_OPT        	--install_base \"/home/es/perl5\"
-	set -x    	PERL_MM_OPT        	INSTALL_BASE=/home/es/perl5
-	# set -x  	PATH               	"$ASDF_ROOT" "$PATH"
+  set       	asdfH              	(brew --prefix asdf)                                         	#1) bypassed asdf shims via direnv 2) readlink -f to resolve symlinks
+  if test -e	"$asdfH/asdf.fish";	source "$asdfH/asdf.fish" 2>/dev/null; end                   	# Suppress Warning about invalid $ASDF_DIR/shims folder
+  # set -x  	ASDF_ROOT          	"$asdfH/bin"                                                 	# asdf bins only (without shims) for direnv
+  umask     	027                	                                                             	# Fixes Homebrew error (new folders can't be world-writable
+  set -x    	DISPLAY            	(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0	# WSL2 fix (superuser.com/questions/1476086/error-cant-open-display-0), was
+  # set -x  	DISPLAY            	":0.0"                                                       	# old WSL, doesn't work in WSL2
+  set -x    	PATH               	"$HOME/perl5/bin" $PATH
+  set -x    	PERL5LIB           	$HOME/perl5/lib/perl5:/mnt/d/Dropbox/Settings/Dev/Perl5/lib(echo (varAlt PERL5LIB ":$PERL5LIB"))
+  set -x    	PERL_LOCAL_LIB_ROOT	"$HOME/perl5" $PERL_LOCAL_LIB_ROOT
+  set -x    	PERL_MB_OPT        	--install_base \"/home/es/perl5\"
+  set -x    	PERL_MM_OPT        	INSTALL_BASE=/home/es/perl5
+  # set -x  	PATH               	"$ASDF_ROOT" "$PATH"
 end
 if test "$SYSTEM_NAME" = Win
-	set -x USER_NAME   	'Evgeny'
-	set -x DEFAULT_USER	'Evgeny'
-	alias pkg-size "pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
-	set -x	MANPATH	"$CoreUtils_Root/gnuman" $MANPATH
-	set -x	PATH   	"$CoreUtils_Root/gnubin" $PATH
+  set -x USER_NAME   	'Evgeny'
+  set -x DEFAULT_USER	'Evgeny'
+  alias pkg-size "pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less"
+  set -x	MANPATH	"$CoreUtils_Root/gnuman" $MANPATH
+  set -x	PATH   	"$CoreUtils_Root/gnubin" $PATH
 end
 
 # Set PATH
