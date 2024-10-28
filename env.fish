@@ -57,19 +57,19 @@ if test "$SYSTEM_NAME" = OSX
     set -x FZF_CTRL_T_COMMAND 	"$FZF_DEFAULT_COMMAND"
     # set -x FZF_DEFAULT_OPTS 	'--ansi'
   end
-  set -x 	GOKU_EDN_CONFIG_FILE	"$HOME/.config/karabiner/assets/Goku/karabiner.edn"	# Goku (karabiner config editor)
-  set -x 	CMAKE_PREFIX_PATH   	'/usr/local/opt/qt5/'                              	# to build QT5 apps using HomeBrewed QT5
-  set -x 	Dropbox             	"$HOME/Documents/Dropbox"
-  set -x 	GoRoot              	'/usr/local/opt/go/libexec/bin'
-  set -x 	CoreUtils_Root      	'/usr/local/opt/coreutils/libexec'
-  set -x 	GOBin               	"$GOPATH/bin"     	# local GO binaries
-  set -x 	CargoBin            	"$CARGO_HOME/bin" 	# local Rust binaries
-  set    	PyenvBin            	"$PYENV_ROOT/bin" 	# pyenv itself
-  set    	RbenvBin            	"$RBENV_ROOT/bin" 	# rbenv itself
-  set    	NodenvBin           	"$NODENV_ROOT/bin"	# nodenv itself
-  set    	GoenvBin            	"$GOENV_ROOT/bin" 	# goenv itself
-  set -x 	MANPATH             	"$CoreUtils_Root/gnuman" $MANPATH
-  set -x 	PATH                	"$CoreUtils_Root/gnubin" $GOBin $CargoBin $PyenvBin $RbenvBin $NodenvBin $GoenvBin $PATH
+  set -x	GOKU_EDN_CONFIG_FILE	"$HOME/.config/karabiner/assets/Goku/karabiner.edn"	# Goku (karabiner config editor)
+  set -x	CMAKE_PREFIX_PATH   	'/usr/local/opt/qt5/'                              	# to build QT5 apps using HomeBrewed QT5
+  set -x	Dropbox             	"$HOME/Documents/Dropbox"
+  set -x	GoRoot              	'/usr/local/opt/go/libexec/bin'
+  set -x	CoreUtils_Root      	'/usr/local/opt/coreutils/libexec'
+  set -x	GOBin               	"$GOPATH/bin"     	# local GO binaries
+  set -x	CargoBin            	"$CARGO_HOME/bin" 	# local Rust binaries
+  set   	PyenvBin            	"$PYENV_ROOT/bin" 	# pyenv itself
+  set   	RbenvBin            	"$RBENV_ROOT/bin" 	# rbenv itself
+  set   	NodenvBin           	"$NODENV_ROOT/bin"	# nodenv itself
+  set   	GoenvBin            	"$GOENV_ROOT/bin" 	# goenv itself
+  set -x	MANPATH             	"$CoreUtils_Root/gnuman" $MANPATH
+  set -x	PATH                	"$CoreUtils_Root/gnubin" $GOBin $CargoBin $PyenvBin $RbenvBin $NodenvBin $GoenvBin $PATH
 
   # 'XDG'	               	# user-specific files
   set -x 	XDG_CONFIG_HOME	"$HOME/.config"      	#~/.config     	configuration
