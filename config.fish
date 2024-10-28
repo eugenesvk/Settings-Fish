@@ -15,8 +15,6 @@ set -x  	CARGO_HOME 	"$DevD/cargo"            	# Rust package manager  ; ['~/.ca
 set -x  	CargoBin   	"$CARGO_HOME/bin"        	# local Rust binaries
 set -x  	PATH       	$CargoBin $PATH
 # set -x	PATH       	$PATH "/not/interactive"
-/usr/local/bin/rtx activate fish | source
-/usr/local/bin/rtx hook-env -s fish | source
 
 # test, some fish instances try to clone HomeBrew
 set -x HOMEBREW_NO_ANALYTICS    	1
@@ -25,8 +23,6 @@ set -x HOMEBREW_AUTO_UPDATE_SECS	(math "60*60*24*7")	# |300| brew update weekly
 end
 
 if status --is-interactive
-# /usr/local/bin/rtx activate fish | source
-# /usr/local/bin/rtx hook-env -s fish | source
 set -gx SYSTEM_NAME (check_system)
 set -gx OMF_PATH    "$HOME/AppData/omf"     	# Path to Oh My Fish install, `-g` global, `-x` export=make it env
 set -gx OMF_CONFIG  "$HOME/.config/fish/omf"	# Customize Oh My Fish configuration path
