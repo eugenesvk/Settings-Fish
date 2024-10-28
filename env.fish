@@ -75,6 +75,8 @@ if test "$SYSTEM_NAME" = OSX
   set -x 	XDG_CONFIG_HOME	"$HOME/.config"      	#~/.config     	configuration
   set -x 	XDG_DATA_HOME  	"$HOME/AppData"      	#~/.local/share	data
   set -x 	XDG_STATE_HOME 	"$HOME/AppData/state"	#~/.local/state	unimportant/non-portable state
+  set -x 	MISE_DATA_DIR  	"$HOME/App/mise"     	# mise-installed apps
+  if command -v mise > /dev/null; mise activate fish | source; end
 
   if command -v $GoRoot/go > /dev/null ; set -x PATH $GoRoot $PATH; end
 
